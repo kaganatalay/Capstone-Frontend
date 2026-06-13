@@ -135,6 +135,7 @@ export default function WizardPage() {
       sessionStorage.setItem("gift_recommender_input", JSON.stringify(submission));
       const result = await getRecommendations(submission);
       sessionStorage.setItem("gift_recommender_results", JSON.stringify(result));
+      sessionStorage.removeItem("gift_shower_fired"); // reset so this new result set gets the shower
       // Trigger blast sequence, then navigate after animation completes
       setBlasting(true);
       await new Promise<void>((resolve) => setTimeout(resolve, 3450));

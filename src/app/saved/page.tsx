@@ -66,7 +66,7 @@ function SavedCard({
             src={gift.photoUrl!}
             alt={gift.name}
             fill
-            className="object-contain p-4 transition-transform duration-500 group-hover:scale-105"
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
             onError={() => setImgError(true)}
             unoptimized
           />

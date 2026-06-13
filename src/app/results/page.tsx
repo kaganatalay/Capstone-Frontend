@@ -4,13 +4,14 @@ import "./results-delight.css";
 
 export const dynamic = "force-dynamic";
 
-import { useEffect, useState, useCallback, useRef } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { GiftCard } from "@/components/design/GiftCard";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ArrowRight, ArrowLeft } from "@/components/design/Icons";
+import { AiChat } from "@/components/design/AiChat";
 import type { GiftItem, RecommendationResult, WizardSubmission } from "@/types/recommendation";
 import {
   loadSavedGifts,
@@ -200,7 +201,7 @@ function MiniCard({ entry, onRemove }: { entry: SavedGift; onRemove: (id: string
             src={gift.photoUrl!}
             alt={gift.name}
             fill
-            className="object-contain p-2"
+            className="object-cover"
             onError={() => setImgError(true)}
             unoptimized
           />
@@ -251,7 +252,6 @@ export default function ResultsPage() {
   const [toastMsg, setToastMsg]     = useState("");
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [showShower, setShowShower] = useState(false);
-  const showerFired                 = useRef(false);
 
   useEffect(() => {
     const raw      = sessionStorage.getItem("gift_recommender_results");
@@ -263,12 +263,12 @@ export default function ResultsPage() {
     setHydrated(true);
   }, [router]);
 
-  // Fire the gift shower once when results are first ready
+  // Fire the gift shower only once per session (survives back-navigation)
   useEffect(() => {
-    if (hydrated && !showerFired.current) {
+    if (hydrated && !sessionStorage.getItem("gift_shower_fired")) {
       const parsed: RecommendationResult | null = result;
       if (parsed && parsed.items && parsed.items.length > 0) {
-        showerFired.current = true;
+        sessionStorage.setItem("gift_shower_fired", "1");
         setShowShower(true);
         setTimeout(() => setShowShower(false), 3600);
       }
@@ -494,6 +494,9 @@ export default function ResultsPage() {
         onClose={() => setDrawerOpen(false)}
         onRemove={handleDrawerRemove}
       />
+
+      {/* ── AI chat ─────────────────────────────────────────────────── */}
+      <AiChat items={items} submission={submission} />
 
       {/* ── Save toast ──────────────────────────────────────────────── */}
       {savedToast && (

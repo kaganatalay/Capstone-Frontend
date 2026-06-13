@@ -8,6 +8,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Body, Caption } from "@/components/design/Typography";
 import { Skeleton } from "@/components/ui/skeleton";
+import { ArrowLeft, ArrowRight } from "@/components/design/Icons";
 import type { GiftItem, RecommendationResult } from "@/types/recommendation";
 
 interface Props {
@@ -61,7 +62,7 @@ export default function ProductDetailPage({ params: rawParams }: Props) {
             className="flex h-9 w-9 items-center justify-center rounded-full border border-border text-muted-foreground transition hover:bg-muted"
             aria-label="Sonuçlara dön"
           >
-            ←
+            <ArrowLeft size={16} />
           </Link>
           <span className="text-sm font-medium text-muted-foreground">
             Öneri #{rank}
@@ -206,23 +207,25 @@ export default function ProductDetailPage({ params: rawParams }: Props) {
                 className="flex w-full items-center justify-center gap-2 rounded-2xl bg-[#f27a1a] px-6 py-4 text-base font-bold text-white shadow transition hover:opacity-90 active:scale-[0.98]"
               >
                 <span>Trendyol'da İncele</span>
-                <span aria-hidden="true">→</span>
+                <ArrowRight size={16} aria-hidden="true" />
               </a>
             ) : (
               <Link
                 href="/results"
                 className="flex w-full items-center justify-center gap-2 rounded-2xl bg-primary px-6 py-4 text-base font-bold text-primary-foreground transition hover:opacity-90"
               >
-                ← Tüm Önerilere Dön
+                <ArrowLeft size={16} aria-hidden="true" />
+                Tüm Önerilere Dön
               </Link>
             )}
 
             {/* Back link */}
             <Link
               href="/results"
-              className="text-center text-sm text-muted-foreground hover:text-foreground transition-colors"
+              className="inline-flex items-center justify-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
             >
-              ← Tüm önerilere dön
+              <ArrowLeft size={14} aria-hidden="true" />
+              Tüm önerilere dön
             </Link>
           </div>
         </div>

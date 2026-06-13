@@ -63,7 +63,7 @@ export function GiftCard({ item, rank, onSave, saved }: GiftCardProps) {
               src={item.photoUrl!}
               alt={item.name}
               fill
-              className="object-contain p-2.5 transition-transform duration-300 group-hover:scale-105"
+              className="object-cover transition-transform duration-300 group-hover:scale-105"
               onError={() => setImgError(true)}
               unoptimized
             />
