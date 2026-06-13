@@ -1,46 +1,34 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { useEffect, useRef, useState } from "react";
 
-type Direction = "left" | "right" | "up" | "none";
+type Direction = "forward" | "back" | "none";
 
 interface AnimatedContainerProps {
   children: React.ReactNode;
   direction?: Direction;
   className?: string;
-  /** Re-runs animation when this key changes */
-  animationKey: string | number;
+  /** @deprecated pass `key={animationKey}` on the element instead — React remount triggers the CSS animation */
+  animationKey?: string | number;
 }
 
-const ANIMATION_CLASS: Record<Direction, string> = {
-  left: "animate-slide-left",
-  right: "animate-slide-right",
-  up: "animate-fade-up",
-  none: "animate-fade-in",
-};
-
+/**
+ * AnimatedContainer — remount-based step transitions.
+ *
+ * Use with `key={step}` on the element; React remounts the component on each
+ * key change, which re-runs the CSS entrance animation. No JS timers, no dead
+ * zones — the new content appears in a single 220ms slide+fade.
+ */
 export function AnimatedContainer({
   children,
-  direction = "left",
+  direction = "forward",
   className,
-  animationKey,
 }: AnimatedContainerProps) {
-  const [cls, setCls] = useState(ANIMATION_CLASS[direction]);
-  const prevKey = useRef(animationKey);
-
-  useEffect(() => {
-    if (prevKey.current !== animationKey) {
-      prevKey.current = animationKey;
-      // Re-trigger by briefly clearing then re-adding
-      setCls("");
-      const t = setTimeout(() => setCls(ANIMATION_CLASS[direction]), 10);
-      return () => clearTimeout(t);
-    }
-  }, [animationKey, direction]);
+  const enterClass =
+    direction === "back" ? "step-enter-back" : "step-enter-forward";
 
   return (
-    <div className={cn(cls, className)}>
+    <div className={cn(enterClass, className)}>
       {children}
     </div>
   );

@@ -8,11 +8,7 @@ interface ProgressBarProps {
   className?: string;
 }
 
-export function ProgressBar({
-  currentStep,
-  totalSteps,
-  className,
-}: ProgressBarProps) {
+export function ProgressBar({ currentStep, totalSteps, className }: ProgressBarProps) {
   const pct = totalSteps > 0 ? Math.round((currentStep / totalSteps) * 100) : 0;
 
   return (
@@ -22,11 +18,16 @@ export function ProgressBar({
       aria-valuemin={1}
       aria-valuemax={totalSteps}
       aria-label={`Adım ${currentStep} / ${totalSteps}`}
-      className={cn("h-1.5 w-full overflow-hidden rounded-full bg-muted", className)}
+      className={cn("relative h-0.5 w-full overflow-hidden rounded-full", className)}
+      style={{ background: "oklch(1 0 0 / 8%)" }}
     >
       <div
-        className="h-full rounded-full bg-primary transition-all duration-500 ease-out"
-        style={{ width: `${pct}%` }}
+        className="h-full rounded-full"
+        style={{
+          width: `${pct}%`,
+          background: "oklch(0.78 0.14 75)",
+          transition: "width 400ms cubic-bezier(0.16, 1, 0.3, 1)",
+        }}
       />
     </div>
   );

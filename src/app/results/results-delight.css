@@ -1,0 +1,52 @@
+/*
+ * results-delight.css
+ *
+ * Staggered card entrance + rank #1 gold glow pulse for the results page.
+ * animationDelay is set inline per card via style prop.
+ */
+
+/* ── Card entrance ────────────────────────────────────────────── */
+.results-card-enter {
+  opacity: 0;
+  animation: resultsCardIn 0.42s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes resultsCardIn {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Rank #1 gold glow pulse ──────────────────────────────────── */
+/*
+  Fires after the card has entered (delay: ~0.5s past card entrance).
+  Three pulses, then stops — not a perpetual loop (that would be annoying).
+  The glow is on the wrapper so it doesn't interfere with GiftCard's own shadow.
+*/
+.results-card-top {
+  animation:
+    resultsCardIn 0.42s cubic-bezier(0.22, 1, 0.36, 1) both,
+    topCardGlow 0.7s ease-out 0.6s 3 forwards;
+  border-radius: 1rem; /* matches rounded-2xl */
+}
+
+@keyframes topCardGlow {
+  0%   { box-shadow: 0 0 0 0px oklch(0.78 0.14 75 / 0); }
+  30%  { box-shadow: 0 0 0 3px oklch(0.78 0.14 75 / 0.45), 0 8px 32px oklch(0.78 0.14 75 / 0.2); }
+  100% { box-shadow: 0 0 0 0px oklch(0.78 0.14 75 / 0); }
+}
+
+/* ── Reduced motion ───────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .results-card-enter,
+  .results-card-top {
+    animation: none !important;
+    opacity: 1;
+    transform: none;
+  }
+}

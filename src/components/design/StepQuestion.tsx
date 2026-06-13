@@ -14,7 +14,6 @@ const ZODIAC_EMOJI: Record<string, string> = {
   Yay: "♐", Oğlak: "♑", Kova: "♒", Balık: "♓",
 };
 
-// Per-question default icon shown when no specific emoji matches
 const QUESTION_DEFAULT_ICON: Record<string, string> = {
   kime_hediye_alıyorsun: "👤",
   cinsiyeti_nedir: "🧑",
@@ -32,7 +31,6 @@ const QUESTION_DEFAULT_ICON: Record<string, string> = {
   "onun_için_hangisi_daha_değerlidir": "❤️",
 };
 
-// Interest emojis by cleaned label prefix
 const INTEREST_EMOJI: [string, string][] = [
   ["Teknoloji", "💻"], ["Moda", "👗"], ["Kozmetik", "💄"],
   ["Ev Dekorasyonu", "🏠"], ["Ev", "🏠"],
@@ -41,28 +39,19 @@ const INTEREST_EMOJI: [string, string][] = [
   ["Oyun", "🎮"], ["Gurme", "🍳"],
 ];
 
-/** Strip (Algoritma...) tags from display label */
 function displayLabel(option: string): string {
   return option.replace(/\s*\(Algoritma[\s\S]*?\)/gi, "").trim();
 }
 
-/**
- * Returns an emoji for an option.
- * Guaranteed to return SOMETHING — falls back to the question-level default
- * so every option always has an icon.
- */
 function getEmoji(option: string, questionId: string): string {
-  const raw = option;
-  const label = displayLabel(raw);
+  const label = displayLabel(option);
   const l = label.toLowerCase();
 
-  // ── Zodiac ──────────────────────────────────────────────────────────────────
   if (ZODIAC_QUESTION.has(questionId)) {
     const name = label.split(" ")[0].split("(")[0].trim();
     return ZODIAC_EMOJI[name] ?? "⭐";
   }
 
-  // ── Interests (multi-select) ─────────────────────────────────────────────────
   if (MULTI_SELECT.has(questionId)) {
     for (const [prefix, emoji] of INTEREST_EMOJI) {
       if (label.startsWith(prefix)) return emoji;
@@ -70,7 +59,6 @@ function getEmoji(option: string, questionId: string): string {
     return "⭐";
   }
 
-  // ── Q1: Recipient ────────────────────────────────────────────────────────────
   if (l.startsWith("anne")) return "👩‍👦";
   if (l.startsWith("baba")) return "👨‍👦";
   if (l.startsWith("kardeş")) return "👫";
@@ -83,12 +71,10 @@ function getEmoji(option: string, questionId: string): string {
   if (l.startsWith("sadece tanıdık") || l.startsWith("yeni birisi")) return "🤝";
   if (l.startsWith("kendime")) return "🎁";
 
-  // ── Q2: Gender ──────────────────────────────────────────────────────────────
   if (l === "kadın") return "👩";
   if (l === "erkek") return "👨";
   if (l.startsWith("belirtmek") || l.includes("unisex")) return "🌈";
 
-  // ── Q3: Age ─────────────────────────────────────────────────────────────────
   if (l.startsWith("18 yaş altı")) return "🧒";
   if (l.startsWith("18 - 24") || l.startsWith("18-24")) return "👦";
   if (l.startsWith("25 - 34") || l.startsWith("25-34")) return "👨";
@@ -97,7 +83,6 @@ function getEmoji(option: string, questionId: string): string {
   if (l.startsWith("55 - 64") || l.startsWith("55-64")) return "👨‍🦳";
   if (l.startsWith("65")) return "👴";
 
-  // ── Q4: Occasion ─────────────────────────────────────────────────────────────
   if (l.startsWith("doğum günü")) return "🎂";
   if (l.startsWith("yıl dönümü")) return "💑";
   if (l.startsWith("sevgililer")) return "💝";
@@ -111,26 +96,22 @@ function getEmoji(option: string, questionId: string): string {
   if (l.startsWith("özür")) return "💐";
   if (l.startsWith("i̇çimden") || l.startsWith("içimden")) return "💫";
 
-  // ── Q5: Budget ──────────────────────────────────────────────────────────────
   if (l.startsWith("0 - 500") || l.startsWith("0-500")) return "💵";
   if (l.startsWith("500 - 1") || l.startsWith("500-1")) return "💰";
   if (l.startsWith("1.000 - 2") || l.startsWith("1000 - 2")) return "💎";
   if (l.startsWith("2.500") || l.startsWith("2500")) return "🔮";
   if (l.includes("üzeri")) return "👑";
 
-  // ── Q7: Color palette ───────────────────────────────────────────────────────
   if (l.startsWith("siyah") || l.includes("antrasit")) return "⬛";
   if (l.startsWith("toprak")) return "🟫";
   if (l.startsWith("canlı") || l.includes("neon")) return "🌈";
   if (l.startsWith("pastel") || l.includes("lila")) return "🌸";
 
-  // ── Q8: Perfect Sunday ──────────────────────────────────────────────────────
   if (l.startsWith("evden hiç çıkmadan")) return "🛋️";
   if (l.startsWith("sırt çantasını")) return "🏕️";
   if (l.startsWith("şık bir mekan")) return "✨";
   if (l.startsWith("kendi köşesinde")) return "📖";
 
-  // ── Q9: Toxic traits ────────────────────────────────────────────────────────
   if (l.startsWith("her zaman üşümesi")) return "🥶";
   if (l.startsWith("telefon şarjının")) return "🔋";
   if (l.startsWith("her şeyi aşırı")) return "📋";
@@ -140,36 +121,27 @@ function getEmoji(option: string, questionId: string): string {
   if (l.startsWith("7/24 kulaklık")) return "🎧";
   if (l.includes("hiçbir şeyim yok") || l.includes("gardırob")) return "👗";
 
-  // ── Q11: Windfall spending ──────────────────────────────────────────────────
   if (l.includes("üstüme başıma")) return "👗";
   if (l.includes("mideme")) return "🍔";
   if (l.includes("evime")) return "🏠";
   if (l.includes("hobime")) return "🎨";
 
-  // ── Q12: Scent ──────────────────────────────────────────────────────────────
   if (l.startsWith("yeni demlenmiş")) return "☕";
   if (l.startsWith("yağmur")) return "🌊";
   if (l.startsWith("yeni yıkanmış")) return "🧺";
   if (l.startsWith("kaliteli bir parfüm")) return "🌹";
 
-  // ── Q13: Texture ────────────────────────────────────────────────────────────
   if (l.startsWith("yumuşak")) return "🧸";
   if (l.startsWith("pürüzsüz")) return "✨";
   if (l.startsWith("doğal")) return "🪵";
 
-  // ── Q14: Value ──────────────────────────────────────────────────────────────
   if (l.startsWith("hikayesi olan")) return "❤️";
   if (l.startsWith("son teknoloji")) return "💻";
   if (l.startsWith("prestijli")) return "👑";
 
-  // ── Fallback: question-level default ────────────────────────────────────────
   return QUESTION_DEFAULT_ICON[questionId] ?? "🎁";
 }
 
-/**
- * For Q7-style options that have a "Label: description" format,
- * split into main label and subtitle.
- */
 function splitDescriptive(label: string): { main: string; sub?: string } {
   const colonIdx = label.indexOf(": ");
   if (colonIdx > 0 && colonIdx < 50) {
@@ -201,27 +173,82 @@ function RadioRow({ option, questionId, selected, onSelect }: RadioRowProps) {
       role="radio"
       aria-checked={selected}
       onClick={onSelect}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onSelect(); }
+      }}
       className={cn(
-        "flex items-center gap-3 w-full rounded-xl border-2 px-4 py-3 text-left",
-        "transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-        "active:scale-[0.98]",
-        selected
-          ? "border-primary bg-primary/10 text-primary"
-          : "border-border bg-card text-foreground hover:border-primary/40 hover:bg-primary/5"
+        "group flex items-center gap-4 w-full rounded-xl px-4 py-3.5 text-left",
+        "transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+        "active:scale-[0.985]"
       )}
+      style={
+        selected
+          ? {
+              background: "oklch(0.26 0.065 75 / 0.45)",
+              border: "1.5px solid oklch(0.78 0.14 75 / 0.55)",
+            }
+          : {
+              background: "oklch(0.2 0.04 310 / 55%)",
+              border: "1px solid oklch(1 0 0 / 7%)",
+            }
+      }
     >
-      <span className="text-xl shrink-0" aria-hidden="true">{emoji}</span>
+      {/* Emoji icon */}
+      <span
+        className={cn(
+          "flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-xl",
+          "transition-transform duration-150",
+          selected ? "scale-110" : "group-hover:scale-105"
+        )}
+        style={{
+          background: selected
+            ? "oklch(0.78 0.14 75 / 0.18)"
+            : "oklch(1 0 0 / 5%)",
+        }}
+        aria-hidden="true"
+      >
+        {emoji}
+      </span>
+
+      {/* Label */}
       <span className="flex-1 min-w-0">
-        <span className="block text-sm font-medium leading-snug">{main}</span>
+        <span
+          className={cn(
+            "block text-sm font-medium leading-snug transition-colors duration-150",
+            selected ? "text-foreground" : "text-foreground/75 group-hover:text-foreground/90"
+          )}
+        >
+          {main}
+        </span>
         {sub && (
-          <span className="block text-xs text-muted-foreground mt-0.5 leading-snug">{sub}</span>
+          <span
+            className="block text-xs leading-snug mt-0.5"
+            style={{ color: "oklch(0.52 0.015 260)" }}
+          >
+            {sub}
+          </span>
         )}
       </span>
-      {selected && (
-        <span className="ml-auto shrink-0 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-primary-foreground text-[11px]">
-          ✓
-        </span>
-      )}
+
+      {/* Selection indicator */}
+      <span
+        className={cn(
+          "ml-auto shrink-0 flex h-5 w-5 items-center justify-center rounded-full transition-all duration-200",
+          selected ? "opacity-100 scale-100" : "opacity-0 scale-75 group-hover:opacity-25 group-hover:scale-90"
+        )}
+        style={
+          selected
+            ? { background: "oklch(0.78 0.14 75)", color: "#1a0f2e" }
+            : { border: "1.5px solid oklch(0.78 0.14 75 / 0.6)" }
+        }
+        aria-hidden="true"
+      >
+        {selected && (
+          <svg width="10" height="8" viewBox="0 0 10 8" fill="none" aria-hidden="true">
+            <path d="M1 4l2.5 2.5L9 1" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        )}
+      </span>
     </button>
   );
 }
@@ -247,16 +274,35 @@ function ZodiacGrid({ options, value, onChange }: {
             role="radio"
             aria-checked={selected}
             onClick={() => onChange(opt)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onChange(opt); }
+            }}
             className={cn(
-              "flex flex-col items-center gap-1 rounded-xl border-2 py-3 px-1",
-              "transition-all duration-150 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-              selected
-                ? "border-primary bg-primary/10 text-primary"
-                : "border-border bg-card text-foreground hover:border-primary/40 hover:bg-primary/5"
+              "flex flex-col items-center gap-2 rounded-xl py-4 px-2",
+              "min-h-[72px]",
+              "transition-all duration-200 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             )}
+            style={
+              selected
+                ? {
+                    background: "oklch(0.26 0.065 75 / 0.45)",
+                    border: "1.5px solid oklch(0.78 0.14 75 / 0.55)",
+                  }
+                : {
+                    background: "oklch(0.2 0.04 310 / 55%)",
+                    border: "1px solid oklch(1 0 0 / 7%)",
+                  }
+            }
           >
-            <span className="text-2xl">{emoji}</span>
-            <span className="text-[11px] font-semibold">{name}</span>
+            <span className={cn("text-2xl transition-transform duration-150", selected && "scale-110")}>
+              {emoji}
+            </span>
+            <span
+              className="text-[11px] font-medium leading-tight text-center"
+              style={{ color: selected ? "oklch(0.92 0.01 65)" : "oklch(0.58 0.015 260)" }}
+            >
+              {name}
+            </span>
           </button>
         );
       })}
@@ -273,8 +319,8 @@ interface StepQuestionProps {
 }
 
 export function StepQuestion({ question, value, onChange }: StepQuestionProps) {
-  const isMulti   = MULTI_SELECT.has(question.id);
-  const isZodiac  = ZODIAC_QUESTION.has(question.id);
+  const isMulti  = MULTI_SELECT.has(question.id);
+  const isZodiac = ZODIAC_QUESTION.has(question.id);
 
   if (isMulti) {
     const chips = question.options.map((opt) => ({
@@ -304,7 +350,11 @@ export function StepQuestion({ question, value, onChange }: StepQuestionProps) {
 
   const strValue = typeof value === "string" ? value : "";
   return (
-    <div className="flex flex-col gap-2" role="radiogroup">
+    <div
+      className="flex flex-col gap-2 stagger-children"
+      role="radiogroup"
+      aria-label={question.title}
+    >
       {question.options.map((opt) => (
         <RadioRow
           key={opt}

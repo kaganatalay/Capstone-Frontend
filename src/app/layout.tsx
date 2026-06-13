@@ -1,10 +1,20 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Playfair_Display, DM_Sans } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  variable: "--font-heading",
+  weight: ["400", "600", "700"],
+  style: ["normal", "italic"],
+  display: "swap",
+});
+
+const dmSans = DM_Sans({
   subsets: ["latin"],
   variable: "--font-sans",
+  weight: ["300", "400", "500", "600"],
+  style: ["normal", "italic"],
   display: "swap",
 });
 
@@ -24,13 +34,8 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="tr" className={inter.variable}>
+    <html lang="tr" className={`${playfair.variable} ${dmSans.variable}`}>
       <body className="min-h-dvh bg-background antialiased">
-        {/*
-         * No global max-width cap — each page defines its own responsive layout.
-         * This allows wizard/detail to be centered cards on desktop while
-         * results can spread to a 2-column grid.
-         */}
         {children}
       </body>
     </html>

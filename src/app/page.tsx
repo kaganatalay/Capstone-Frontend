@@ -1,83 +1,218 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { AppTitle, Body, Caption } from "@/components/design/Typography";
+import { AnimatedGiftBox } from "@/components/design/AnimatedGiftBox";
 
 export const metadata: Metadata = {
-  title: "Hediye Öneri — Mükemmel Hediyeyi Bul",
+  title: "Gifty — Mükemmel Hediyeyi Bul",
   description:
     "14 kısa soruyu yanıtla, yapay zeka sevdiklerine özel hediyeler önersin.",
 };
 
 const FEATURES = [
-  { icon: "⚡", label: "60 saniye sürer" },
-  { icon: "🎯", label: "Kişiselleştirilmiş öneriler" },
-  { icon: "🤖", label: "Yapay zeka açıklamaları" },
+  { icon: "⚡", label: "60 saniyede tamamlanır" },
+  { icon: "🎯", label: "Kişiye özel öneriler" },
+  { icon: "🤖", label: "Yapay zeka destekli" },
 ] as const;
 
 export default function HomePage() {
   return (
     <main className="relative flex min-h-dvh flex-col items-center justify-center overflow-hidden px-5 py-16">
-      {/* Ambient blobs */}
+      {/* ── Multi-layer ambient background ───────────────────── */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
+        {/* Top crown glow */}
         <div
-          className="absolute -top-32 left-1/2 h-[520px] w-[520px] -translate-x-1/2 rounded-full opacity-20 blur-3xl"
-          style={{ background: "radial-gradient(circle, oklch(0.65 0.22 280), transparent 70%)" }}
+          className="absolute -top-40 left-1/2 h-[680px] w-[680px] -translate-x-1/2 rounded-full"
+          style={{
+            background:
+              "radial-gradient(circle, oklch(0.30 0.08 310 / 0.7) 0%, transparent 65%)",
+          }}
         />
+        {/* Bottom-right warm gold accent */}
         <div
-          className="absolute bottom-0 right-0 h-[360px] w-[360px] rounded-full opacity-15 blur-3xl"
-          style={{ background: "radial-gradient(circle, oklch(0.65 0.22 50), transparent 70%)" }}
+          className="absolute -bottom-32 -right-32 h-[460px] w-[460px] rounded-full"
+          style={{
+            background:
+              "radial-gradient(circle, oklch(0.48 0.13 75 / 0.22) 0%, transparent 65%)",
+          }}
         />
+        {/* Bottom-left rose accent */}
         <div
-          className="absolute bottom-0 left-0 h-[240px] w-[240px] rounded-full opacity-10 blur-3xl"
-          style={{ background: "radial-gradient(circle, oklch(0.65 0.22 160), transparent 70%)" }}
+          className="absolute -bottom-20 -left-20 h-[300px] w-[300px] rounded-full"
+          style={{
+            background:
+              "radial-gradient(circle, oklch(0.42 0.12 340 / 0.18) 0%, transparent 65%)",
+          }}
+        />
+        {/* Subtle center shimmer strip */}
+        <div
+          className="absolute left-1/2 top-1/2 h-px w-[380px] -translate-x-1/2 -translate-y-1/2"
+          style={{
+            background:
+              "linear-gradient(90deg, transparent, oklch(0.78 0.14 75 / 0.18), transparent)",
+          }}
         />
       </div>
 
-      <div className="flex w-full max-w-sm flex-col items-center gap-10 text-center animate-fade-up">
-        {/* Logo */}
-        <div className="relative">
-          <div className="flex h-24 w-24 items-center justify-center rounded-3xl bg-primary/10 text-5xl shadow-sm ring-1 ring-primary/20">
-            🎁
-          </div>
-          <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-[10px] font-bold text-primary-foreground">
-            AI
-          </span>
+      {/* ── Brand wordmark ────────────────────────────────────── */}
+      <div
+        className="absolute top-6 left-1/2 -translate-x-1/2 animate-fade-in"
+        style={{ animationDelay: "0ms" }}
+      >
+        <span
+          className="font-display text-sm font-semibold tracking-widest uppercase"
+          style={{ color: "oklch(0.78 0.14 75 / 0.6)", letterSpacing: "0.22em" }}
+        >
+          Gifty
+        </span>
+      </div>
+
+      {/* ── Main card ─────────────────────────────────────────── */}
+      <div
+        className="relative flex w-full max-w-sm flex-col items-center gap-10 text-center"
+      >
+        {/* Animated gift logo */}
+        <div className="animate-fade-up" style={{ animationDelay: "60ms" }}>
+          <AnimatedGiftBox />
         </div>
 
-        {/* Copy */}
-        <div className="space-y-4">
-          <AppTitle>Hediye Öneri</AppTitle>
-          <Body size="lg" muted className="leading-relaxed">
+        {/* Headline block */}
+        <div
+          className="space-y-4 animate-fade-up"
+          style={{ animationDelay: "140ms" }}
+        >
+          <h1
+            className="font-display text-[2.6rem] font-bold leading-[1.1] tracking-[-0.02em]"
+            style={{
+              color: "oklch(0.82 0.14 75)",
+              textWrap: "balance",
+            }}
+          >
+            Mükemmel{" "}
+            <em style={{ fontStyle: "italic" }}>Hediyeyi</em>{" "}
+            Bul
+          </h1>
+          <p
+            className="text-base leading-relaxed max-w-[28ch] mx-auto"
+            style={{ color: "oklch(0.70 0.025 60)" }}
+          >
             14 kısa soruyu yanıtla,{" "}
-            <span className="font-semibold text-foreground">yapay zekâ</span>{" "}
-            sevdiklerine özel hediyeleri bulsun. Trendyol'dan anında sipariş.
-          </Body>
+            <span style={{ color: "oklch(0.92 0.01 65)", fontWeight: 500 }}>
+              yapay zekâ
+            </span>{" "}
+            sevdiklerine özel hediyeleri bulsun.
+          </p>
         </div>
 
-        {/* Feature pills */}
-        <div className="flex flex-wrap justify-center gap-2" aria-label="Özellikler">
-          {FEATURES.map(({ icon, label }) => (
-            <span
-              key={label}
-              className="inline-flex items-center gap-1.5 rounded-full border border-border bg-card px-3.5 py-1.5 text-sm font-medium text-foreground"
-            >
-              <span aria-hidden="true">{icon}</span>
-              {label}
-            </span>
-          ))}
-        </div>
-
-        {/* CTA */}
-        <div className="w-full space-y-3">
+        {/* CTA block */}
+        <div
+          className="w-full space-y-4 animate-fade-up"
+          style={{ animationDelay: "220ms" }}
+        >
           <Link
             id="start-recommendation-btn"
             href="/wizard"
-            className="block w-full rounded-2xl bg-primary px-6 py-4 text-center text-base font-bold text-primary-foreground shadow-lg transition-all duration-200 hover:opacity-90 hover:shadow-xl active:scale-[0.98]"
+            className="group relative block w-full overflow-hidden rounded-2xl px-6 py-4 text-center text-base font-semibold transition-all duration-300 active:scale-[0.97]"
+            style={{
+              background:
+                "linear-gradient(135deg, oklch(0.84 0.14 78), oklch(0.70 0.18 65))",
+              color: "#1a0f2e",
+              boxShadow:
+                "0 4px 24px oklch(0.78 0.14 75 / 0.35), inset 0 1px 0 oklch(1 0 0 / 0.18)",
+            }}
           >
-            Hediye Bul →
+            {/* Shimmer sweep on hover */}
+            <span
+              aria-hidden="true"
+              className="absolute inset-0 -translate-x-full transition-transform duration-500 group-hover:translate-x-full"
+              style={{
+                background:
+                  "linear-gradient(90deg, transparent, oklch(1 0 0 / 0.25), transparent)",
+              }}
+            />
+            <span className="relative">Hediye Bul →</span>
           </Link>
-          <Caption>Hesap gerekmez · Verileriniz saklanmaz</Caption>
+
+          {/* Feature pills */}
+          <div className="flex flex-wrap justify-center gap-2">
+            {FEATURES.map(({ icon, label }) => (
+              <span
+                key={label}
+                className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-medium"
+                style={{
+                  background: "oklch(0.20 0.04 310 / 60%)",
+                  border: "1px solid oklch(1 0 0 / 8%)",
+                  color: "oklch(0.65 0.022 60)",
+                }}
+              >
+                <span aria-hidden="true">{icon}</span>
+                {label}
+              </span>
+            ))}
+          </div>
+
+          <p
+            className="text-xs"
+            style={{ color: "oklch(0.44 0.015 260)" }}
+          >
+            Hesap gerekmez · Verileriniz saklanmaz
+          </p>
         </div>
+      </div>
+
+      {/* ── Decorative floating dots ──────────────────────────── */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+        <div
+          className="absolute animate-float"
+          style={{
+            top: "18%",
+            left: "8%",
+            width: 5,
+            height: 5,
+            borderRadius: "50%",
+            background: "oklch(0.78 0.14 75 / 0.4)",
+            animationDelay: "0s",
+            animationDuration: "4s",
+          }}
+        />
+        <div
+          className="absolute animate-float"
+          style={{
+            top: "28%",
+            right: "10%",
+            width: 3.5,
+            height: 3.5,
+            borderRadius: "50%",
+            background: "oklch(0.78 0.14 75 / 0.3)",
+            animationDelay: "0.8s",
+            animationDuration: "5s",
+          }}
+        />
+        <div
+          className="absolute animate-float"
+          style={{
+            bottom: "22%",
+            left: "14%",
+            width: 4,
+            height: 4,
+            borderRadius: "50%",
+            background: "oklch(0.65 0.12 340 / 0.35)",
+            animationDelay: "1.4s",
+            animationDuration: "4.5s",
+          }}
+        />
+        <div
+          className="absolute animate-float"
+          style={{
+            bottom: "30%",
+            right: "8%",
+            width: 3,
+            height: 3,
+            borderRadius: "50%",
+            background: "oklch(0.78 0.14 75 / 0.25)",
+            animationDelay: "2s",
+            animationDuration: "6s",
+          }}
+        />
       </div>
     </main>
   );
