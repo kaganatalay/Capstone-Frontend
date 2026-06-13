@@ -1,6 +1,8 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { AnimatedGiftBox } from "@/components/design/AnimatedGiftBox";
+import { SavedBadge } from "@/components/design/SavedBadge";
+import { ArrowRight } from "@/components/design/Icons";
 
 export const metadata: Metadata = {
   title: "Gifty — Mükemmel Hediyeyi Bul",
@@ -66,13 +68,16 @@ export default function HomePage() {
         </span>
       </div>
 
+      {/* Saved gifts badge (top right — shows when gifts are saved) */}
+      <SavedBadge />
+
       {/* ── Main card ─────────────────────────────────────────── */}
       <div
         className="relative flex w-full max-w-sm flex-col items-center gap-10 text-center"
       >
         {/* Animated gift logo */}
         <div className="animate-fade-up" style={{ animationDelay: "60ms" }}>
-          <AnimatedGiftBox />
+          <AnimatedGiftBox size={148} />
         </div>
 
         {/* Headline block */}
@@ -129,7 +134,7 @@ export default function HomePage() {
                   "linear-gradient(90deg, transparent, oklch(1 0 0 / 0.25), transparent)",
               }}
             />
-            <span className="relative">Hediye Bul →</span>
+            <span className="relative flex items-center justify-center gap-2">Hediye Bul <ArrowRight size={15} /></span>
           </Link>
 
           {/* Feature pills */}

@@ -6,6 +6,9 @@ import { fetchQuestions, getRecommendations, parseBudgetMax } from "@/lib/api";
 import { StepQuestion } from "@/components/design/StepQuestion";
 import { ProgressBar } from "@/components/design/ProgressBar";
 import { AnimatedContainer } from "@/components/design/AnimatedContainer";
+import { TypewriterText } from "@/components/design/TypewriterText";
+import { ArrowRight } from "@/components/design/Icons";
+import { AnimatedGiftBox } from "@/components/design/AnimatedGiftBox";
 import type { Question, WizardAnswers, WizardSubmission } from "@/types/recommendation";
 
 const BUDGET_Q_ID = "bütçe_aralığın_nedir";
@@ -24,8 +27,16 @@ function isValid(question: Question, value: string | string[] | undefined): bool
 }
 
 // How long to wait after a single-select tap before auto-advancing (ms).
-// Short enough to feel instant; long enough to register the selected state visually.
 const AUTO_ADVANCE_DELAY = 180;
+
+// Rotating loading messages specific to what the product actually does
+const LOADING_MESSAGES = [
+  "Kişilik analizi yapılıyor...",
+  "Trendyol kataloğu taranıyor...",
+  "Bütçeye göre filtreleniyor...",
+  "En uygun hediyeler sıralanıyor...",
+  "Son dokunuşlar yapılıyor...",
+];
 
 export default function WizardPage() {
   const router = useRouter();
@@ -39,9 +50,14 @@ export default function WizardPage() {
   const [direction, setDirection] = useState<"forward" | "back">("forward");
 
   const [submitting, setSubmitting] = useState(false);
+  const [blasting, setBlasting]     = useState(false);
+  const [loadingMsgIdx, setLoadingMsgIdx] = useState(0);
   const [error, setError] = useState<string | null>(null);
+  // Track the furthest step the user has reached — used to detect back-navigation
+  const [maxStep, setMaxStep] = useState(0);
 
   const autoAdvanceTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const loadingInterval  = useRef<ReturnType<typeof setInterval> | null>(null);
 
   useEffect(() => {
     fetchQuestions()
@@ -52,6 +68,19 @@ export default function WizardPage() {
       .catch((e) => setQuestionsError(e.message ?? "Bir hata oluştu."))
       .finally(() => setLoadingQuestions(false));
   }, []);
+
+  // Cycle loading messages while submitting
+  useEffect(() => {
+    if (submitting) {
+      loadingInterval.current = setInterval(() => {
+        setLoadingMsgIdx((i) => (i + 1) % LOADING_MESSAGES.length);
+      }, 1800);
+    } else {
+      if (loadingInterval.current) clearInterval(loadingInterval.current);
+      setLoadingMsgIdx(0);
+    }
+    return () => { if (loadingInterval.current) clearInterval(loadingInterval.current); };
+  }, [submitting]);
 
   // Cancel pending auto-advance when step changes
   useEffect(() => {
@@ -79,7 +108,11 @@ export default function WizardPage() {
           submitWithAnswers({ ...answers, [currentQuestion.id]: value });
         } else {
           setDirection("forward");
-          setStep((s) => s + 1);
+          setStep((s) => {
+            const next = s + 1;
+            setMaxStep((m) => Math.max(m, next));
+            return next;
+          });
         }
       }, AUTO_ADVANCE_DELAY);
     }
@@ -102,10 +135,14 @@ export default function WizardPage() {
       sessionStorage.setItem("gift_recommender_input", JSON.stringify(submission));
       const result = await getRecommendations(submission);
       sessionStorage.setItem("gift_recommender_results", JSON.stringify(result));
+      // Trigger blast sequence, then navigate after animation completes
+      setBlasting(true);
+      await new Promise<void>((resolve) => setTimeout(resolve, 3450));
       router.push("/results");
     } catch (e) {
       setError(e instanceof Error ? e.message : "Bir hata oluştu. Lütfen tekrar deneyin.");
       setSubmitting(false);
+      setBlasting(false);
     }
   }, [router]);
 
@@ -116,7 +153,11 @@ export default function WizardPage() {
     if (autoAdvanceTimer.current) clearTimeout(autoAdvanceTimer.current);
     if (isLastStep) { submit(); return; }
     setDirection("forward");
-    setStep((s) => s + 1);
+    setStep((s) => {
+      const next = s + 1;
+      setMaxStep((m) => Math.max(m, next));
+      return next;
+    });
   }
 
   // Keyboard shortcut: Enter advances (for power users)
@@ -138,15 +179,7 @@ export default function WizardPage() {
     return (
       <main className="flex min-h-dvh flex-col items-center justify-center gap-6 px-5">
         <div className="flex flex-col items-center gap-5 text-center animate-fade-up">
-          <div
-            className="flex h-20 w-20 items-center justify-center rounded-2xl text-4xl"
-            style={{
-              background: "oklch(0.22 0.055 310)",
-              boxShadow: "0 4px 20px oklch(0 0 0 / 0.3)",
-            }}
-          >
-            🎁
-          </div>
+          <AnimatedGiftBox size={108} variant="loading" />
           <div className="flex gap-2">
             {[0, 1, 2].map((i) => (
               <div
@@ -190,40 +223,75 @@ export default function WizardPage() {
 
   if (submitting) {
     return (
-      <main className="flex min-h-dvh flex-col items-center justify-center gap-8 px-5">
-        <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10"
-          style={{ background: "radial-gradient(ellipse 60% 50% at 50% 50%, oklch(0.3 0.08 75 / 0.12), transparent 65%)" }}
+      <main className="flex min-h-dvh flex-col items-center justify-center gap-8 px-5 overflow-hidden">
+        {/* Ambient glow — intensifies during blast */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 -z-10 transition-all duration-700"
+          style={{
+            background: blasting
+              ? "radial-gradient(ellipse 80% 70% at 50% 50%, oklch(0.42 0.14 75 / 0.28), transparent 60%)"
+              : "radial-gradient(ellipse 60% 50% at 50% 50%, oklch(0.3 0.08 75 / 0.12), transparent 65%)",
+          }}
         />
+
         <div className="relative flex flex-col items-center gap-6 text-center animate-fade-up">
+          {/* Gift box — shakes while loading, blasts when done */}
+          <AnimatedGiftBox
+            size={148}
+            variant={blasting ? "blast" : "loading"}
+          />
+
+          {/* Copy swaps on blast */}
           <div
-            className="flex h-20 w-20 items-center justify-center rounded-2xl text-4xl"
-            style={{
-              background: "oklch(0.22 0.055 310)",
-              boxShadow: "0 4px 24px oklch(0.78 0.14 75 / 0.2)",
-            }}
+            className="transition-all duration-300"
+            style={{ opacity: blasting ? 0 : 1, transform: blasting ? "translateY(8px)" : "translateY(0)" }}
           >
-            🎁
-          </div>
-          <div>
             <p className="text-xl font-semibold" style={{ color: "oklch(0.82 0.14 75)" }}>
               En iyi hediyeler aranıyor...
             </p>
-            <p className="mt-2 text-sm" style={{ color: "oklch(0.58 0.02 60)" }}>
-              Cevapların katalogumuzla eşleştiriliyor
+            <p
+              className="mt-2 text-sm transition-all duration-500"
+              style={{ color: "oklch(0.58 0.02 60)" }}
+            >
+              {LOADING_MESSAGES[loadingMsgIdx]}
             </p>
           </div>
-          <div className="flex gap-2">
-            {[0, 1, 2].map((i) => (
-              <div
-                key={i}
-                className="h-2 w-2 rounded-full animate-pulse"
-                style={{
-                  background: "oklch(0.78 0.14 75)",
-                  animationDelay: `${i * 220}ms`,
-                }}
-              />
-            ))}
-          </div>
+
+          {/* Blast reveal text — appears at zoom peak */}
+          {blasting && (
+            <p
+              className="absolute animate-fade-up text-2xl font-semibold"
+              style={{
+                color: "oklch(0.94 0.18 80)",
+                animationDelay: "2300ms",
+                animationFillMode: "both",
+                top: "calc(100% + 1.5rem)",
+                whiteSpace: "nowrap",
+                textShadow: "0 0 40px oklch(0.82 0.14 75 / 0.55)",
+              }}
+            >
+              Hediyeler hazır ✦
+            </p>
+          )}
+
+
+          {/* Progress dots — hidden during blast */}
+          {!blasting && (
+            <div className="flex gap-2">
+              {[0, 1, 2, 3, 4].map((i) => (
+                <div
+                  key={i}
+                  className="h-1.5 w-1.5 rounded-full"
+                  style={{
+                    background: "oklch(0.78 0.14 75)",
+                    animation: "pulse-dot 1.4s ease-in-out infinite",
+                    animationDelay: `${i * 200}ms`,
+                  }}
+                />
+              ))}
+            </div>
+          )}
         </div>
       </main>
     );
@@ -287,10 +355,14 @@ export default function WizardPage() {
                 className="text-[1.375rem] font-semibold leading-snug text-foreground"
                 style={{ textWrap: "balance" } as React.CSSProperties}
               >
-                {currentQuestion.title}
+                <TypewriterText
+                  key={`${step}-title`}
+                  text={currentQuestion.title}
+                  speed={10}
+                />
               </h1>
               {isMulti && (
-                <p className="text-sm" style={{ color: "oklch(0.55 0.015 260)" }}>
+                <p className="text-sm animate-fade-in" style={{ color: "oklch(0.55 0.015 260)", animationDelay: "120ms" }}>
                   {stepHint(currentQuestion)}
                 </p>
               )}
@@ -349,9 +421,17 @@ export default function WizardPage() {
           ) : (
             /* Single-select: auto-advances, button is a fallback/skip affordance */
             <div className="flex items-center justify-between gap-3">
-              <p className="text-xs" style={{ color: "oklch(0.42 0.01 260)" }}>
-                {stepValid ? "Seçimin kaydedildi, devam ediliyor..." : "Bir seçenek seç"}
-              </p>
+              {/* Only show the hint when the user has navigated back to a completed step */}
+              {(step < maxStep && stepValid) && (
+                <p className="text-xs" style={{ color: "oklch(0.42 0.01 260)" }}>
+                  Seçimin kaydedildi, devam ediliyor...
+                </p>
+              )}
+              {!stepValid && (
+                <p className="text-xs" style={{ color: "oklch(0.42 0.01 260)" }}>
+                  Bir seçenek seç
+                </p>
+              )}
               {stepValid && (
                 <button
                   id="wizard-next-btn"
@@ -363,7 +443,7 @@ export default function WizardPage() {
                     color: "#1a0f2e",
                   }}
                 >
-                  {isLastStep ? "Hediyeleri bul" : "İleri →"}
+                  {isLastStep ? "Hediyeleri bul" : <span className="flex items-center justify-center gap-1.5">İleri <ArrowRight size={14} /></span>}
                 </button>
               )}
             </div>

@@ -3,12 +3,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { ArrowUpRight } from "@/components/design/Icons";
 import type { GiftItem } from "@/types/recommendation";
 
 interface GiftCardProps {
   item: GiftItem;
   rank?: number;
-  onSave?: (id: string) => void;
+  onSave?: () => void;
   saved?: boolean;
 }
 
@@ -147,7 +148,7 @@ export function GiftCard({ item, rank, onSave, saved }: GiftCardProps) {
                   aria-label={saved ? "Kaydedilenlerden çıkar" : "Kaydet"}
                   onClick={(e) => {
                     e.preventDefault();
-                    onSave(item.id);
+                    onSave();
                   }}
                   className="flex h-7 w-7 items-center justify-center rounded-full transition-all duration-200 active:scale-90 hover:scale-110"
                   style={{
@@ -163,13 +164,11 @@ export function GiftCard({ item, rank, onSave, saved }: GiftCardProps) {
                 </button>
               )}
 
-              {/* Arrow */}
-              <span
-                className="text-xs transition-all duration-200 group-hover:translate-x-0.5"
+              <ArrowUpRight
+                size={13}
+                className="transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                 style={{ color: "oklch(0.55 0.02 65)" }}
-              >
-                →
-              </span>
+              />
             </div>
           </div>
         </div>

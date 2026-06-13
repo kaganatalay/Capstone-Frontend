@@ -1,5 +1,6 @@
 "use client";
 
+import { useCallback, useRef } from "react";
 import { cn } from "@/lib/utils";
 import { ChipSelect } from "@/components/design/ChipSelect";
 import type { Question } from "@/types/recommendation";
@@ -153,6 +154,100 @@ function splitDescriptive(label: string): { main: string; sub?: string } {
   return { main: label };
 }
 
+// ─── Ripple shockwave ─────────────────────────────────────────────────────────
+/**
+ * Fires an intense two-wave gold shockwave from the click origin.
+ * Wave 1: fast bloom to ~40% radius at full opacity, then expands to full + fades.
+ * Wave 2: slightly delayed, smaller bloom ring.
+ * Respects prefers-reduced-motion.
+ */
+function fireRipple(
+  _container: HTMLElement,
+  x: number,
+  y: number,
+) {
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduced) return;
+
+  const vw = window.innerWidth;
+  const vh = window.innerHeight;
+  // Furthest corner distance = max ripple radius
+  const maxR = Math.max(
+    Math.hypot(x, y),
+    Math.hypot(x - vw, y),
+    Math.hypot(x, y - vh),
+    Math.hypot(x - vw, y - vh),
+  );
+
+  function spawnWave(opts: {
+    color: string;
+    startR: number;
+    endR: number;
+    startOpacity: number;
+    endOpacity: number;
+    duration: number;
+    delay: number;
+    easing: string;
+  }) {
+    const el = document.createElement("div");
+    el.style.cssText = `
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      background: ${opts.color};
+      clip-path: circle(${opts.startR}px at ${x}px ${y}px);
+      opacity: ${opts.startOpacity};
+      will-change: clip-path, opacity;
+    `;
+    document.body.appendChild(el);
+
+    const anim = el.animate(
+      [
+        {
+          clipPath: `circle(${opts.startR}px at ${x}px ${y}px)`,
+          opacity: opts.startOpacity,
+        },
+        {
+          clipPath: `circle(${opts.endR}px at ${x}px ${y}px)`,
+          opacity: opts.endOpacity,
+        },
+      ],
+      {
+        duration: opts.duration,
+        delay: opts.delay,
+        easing: opts.easing,
+        fill: "forwards",
+      },
+    );
+    anim.onfinish = () => el.remove();
+  }
+
+  // Wave 1 — main gold wash: slow, wide, cinematic
+  spawnWave({
+    color: "oklch(0.88 0.18 78 / 0.20)",
+    startR: 0,
+    endR: maxR,
+    startOpacity: 1,
+    endOpacity: 0,
+    duration: 1400,
+    delay: 0,
+    easing: "cubic-bezier(0.12, 1, 0.20, 1)",
+  });
+
+  // Wave 2 — tighter bloom ring, slightly behind
+  spawnWave({
+    color: "oklch(0.95 0.20 80 / 0.13)",
+    startR: 0,
+    endR: maxR * 0.60,
+    startOpacity: 1,
+    endOpacity: 0,
+    duration: 950,
+    delay: 120,
+    easing: "cubic-bezier(0.18, 1, 0.28, 1)",
+  });
+}
+
 // ─── RadioRow ─────────────────────────────────────────────────────────────────
 
 interface RadioRowProps {
@@ -160,29 +255,43 @@ interface RadioRowProps {
   questionId: string;
   selected: boolean;
   onSelect: () => void;
+  index: number;
 }
 
-function RadioRow({ option, questionId, selected, onSelect }: RadioRowProps) {
+function RadioRow({ option, questionId, selected, onSelect, index }: RadioRowProps) {
   const label = displayLabel(option);
   const emoji = getEmoji(option, questionId);
   const { main, sub } = splitDescriptive(label);
+  const btnRef = useRef<HTMLButtonElement>(null);
+
+  const handleClick = useCallback(
+    (e: React.MouseEvent) => {
+      // Fire ripple from click coordinates
+      fireRipple(btnRef.current!, e.clientX, e.clientY);
+      onSelect();
+    },
+    [onSelect],
+  );
 
   return (
     <button
+      ref={btnRef}
       type="button"
       role="radio"
       aria-checked={selected}
-      onClick={onSelect}
+      onClick={handleClick}
       onKeyDown={(e) => {
         if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onSelect(); }
       }}
       className={cn(
-        "group flex items-center gap-4 w-full rounded-xl px-4 py-3.5 text-left",
-        "transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-        "active:scale-[0.985]"
+        "radio-row group flex items-center gap-4 w-full rounded-xl px-4 py-3.5 text-left",
+        "transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+        "active:scale-[0.985]",
       )}
-      style={
-        selected
+      style={{
+        // Staggered spring cascade: each option enters with offset delay
+        animationDelay: `${index * 55}ms`,
+        ...(selected
           ? {
               background: "oklch(0.26 0.065 75 / 0.45)",
               border: "1.5px solid oklch(0.78 0.14 75 / 0.55)",
@@ -190,15 +299,15 @@ function RadioRow({ option, questionId, selected, onSelect }: RadioRowProps) {
           : {
               background: "oklch(0.2 0.04 310 / 55%)",
               border: "1px solid oklch(1 0 0 / 7%)",
-            }
-      }
+            }),
+      }}
     >
       {/* Emoji icon */}
       <span
         className={cn(
           "flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-xl",
-          "transition-transform duration-150",
-          selected ? "scale-110" : "group-hover:scale-105"
+          "transition-transform duration-200",
+          selected ? "scale-110" : "group-hover:scale-105",
         )}
         style={{
           background: selected
@@ -215,7 +324,7 @@ function RadioRow({ option, questionId, selected, onSelect }: RadioRowProps) {
         <span
           className={cn(
             "block text-sm font-medium leading-snug transition-colors duration-150",
-            selected ? "text-foreground" : "text-foreground/75 group-hover:text-foreground/90"
+            selected ? "text-foreground" : "text-foreground/75 group-hover:text-foreground/90",
           )}
         >
           {main}
@@ -234,7 +343,7 @@ function RadioRow({ option, questionId, selected, onSelect }: RadioRowProps) {
       <span
         className={cn(
           "ml-auto shrink-0 flex h-5 w-5 items-center justify-center rounded-full transition-all duration-200",
-          selected ? "opacity-100 scale-100" : "opacity-0 scale-75 group-hover:opacity-25 group-hover:scale-90"
+          selected ? "opacity-100 scale-100" : "opacity-0 scale-75 group-hover:opacity-25 group-hover:scale-90",
         )}
         style={
           selected
@@ -262,7 +371,7 @@ function ZodiacGrid({ options, value, onChange }: {
 }) {
   return (
     <div className="grid grid-cols-3 gap-2">
-      {options.map((opt) => {
+      {options.map((opt, i) => {
         const label = displayLabel(opt);
         const name = label.split(" ")[0].split("(")[0].trim();
         const emoji = ZODIAC_EMOJI[name] ?? "⭐";
@@ -273,17 +382,21 @@ function ZodiacGrid({ options, value, onChange }: {
             type="button"
             role="radio"
             aria-checked={selected}
-            onClick={() => onChange(opt)}
+            onClick={(e) => {
+              fireRipple(e.currentTarget, e.clientX, e.clientY);
+              onChange(opt);
+            }}
             onKeyDown={(e) => {
               if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onChange(opt); }
             }}
             className={cn(
-              "flex flex-col items-center gap-2 rounded-xl py-4 px-2",
+              "zodiac-cascade-item flex flex-col items-center gap-2 rounded-xl py-4 px-2",
               "min-h-[72px]",
-              "transition-all duration-200 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              "transition-all duration-200 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
             )}
-            style={
-              selected
+            style={{
+              animationDelay: `${i * 40}ms`,
+              ...(selected
                 ? {
                     background: "oklch(0.26 0.065 75 / 0.45)",
                     border: "1.5px solid oklch(0.78 0.14 75 / 0.55)",
@@ -291,8 +404,8 @@ function ZodiacGrid({ options, value, onChange }: {
                 : {
                     background: "oklch(0.2 0.04 310 / 55%)",
                     border: "1px solid oklch(1 0 0 / 7%)",
-                  }
-            }
+                  }),
+            }}
           >
             <span className={cn("text-2xl transition-transform duration-150", selected && "scale-110")}>
               {emoji}
@@ -351,17 +464,18 @@ export function StepQuestion({ question, value, onChange }: StepQuestionProps) {
   const strValue = typeof value === "string" ? value : "";
   return (
     <div
-      className="flex flex-col gap-2 stagger-children"
+      className="flex flex-col gap-2"
       role="radiogroup"
       aria-label={question.title}
     >
-      {question.options.map((opt) => (
+      {question.options.map((opt, i) => (
         <RadioRow
           key={opt}
           option={opt}
           questionId={question.id}
           selected={strValue === opt}
           onSelect={() => onChange(opt)}
+          index={i}
         />
       ))}
     </div>

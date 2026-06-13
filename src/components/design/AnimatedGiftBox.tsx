@@ -15,15 +15,34 @@ import "./AnimatedGiftBox.css";
  * Respects prefers-reduced-motion: static box with soft glow instead.
  */
 
-export function AnimatedGiftBox({ className = "" }: { className?: string }) {
+export function AnimatedGiftBox({
+  className = "",
+  size = 96,
+  variant = "idle",
+}: {
+  className?: string;
+  size?: number;
+  variant?: "idle" | "loading" | "blast";
+}) {
   return (
     <div
-      className={`animated-gift-root ${className}`}
+      className={`animated-gift-root gift-variant-${variant} ${className}`}
       aria-hidden="true"
       role="img"
+      style={{ width: size, height: size }}
     >
       {/* Ambient under-glow */}
       <div className="gift-glow" />
+
+      {/* Blast-only overlays */}
+      {variant === "blast" && (
+        <>
+          <div className="gift-flash" />
+          <div className="gift-shockwave gift-shockwave-1" />
+          <div className="gift-shockwave gift-shockwave-2" />
+          <div className="gift-shockwave gift-shockwave-3" />
+        </>
+      )}
 
       <svg
         viewBox="0 0 120 120"
@@ -31,6 +50,7 @@ export function AnimatedGiftBox({ className = "" }: { className?: string }) {
         xmlns="http://www.w3.org/2000/svg"
         className="gift-svg"
         aria-hidden="true"
+        style={{ width: size, height: size, overflow: "visible" }}
       >
         <defs>
           {/* Inner shimmer gradient */}
@@ -166,8 +186,6 @@ export function AnimatedGiftBox({ className = "" }: { className?: string }) {
         </g>
       </svg>
 
-      {/* AI badge */}
-      <span className="gift-ai-badge" aria-hidden="true">AI</span>
     </div>
   );
 }

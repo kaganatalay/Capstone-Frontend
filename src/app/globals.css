@@ -190,29 +190,41 @@
   .animate-scale-in {
     animation: scale-in 0.22s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
-  /* Step transition: single-shot entrance animations used by AnimatedContainer */
+
+  /* ── Step transitions: depth-spring entrance (overdrive) ── */
+  /* Forward: slides in from right with subtle depth (scale+blur→1) */
   .step-enter-forward {
-    animation: step-slide-left 0.22s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation: step-spring-forward 0.32s cubic-bezier(0.22, 1, 0.36, 1) both;
   }
   .step-enter-back {
-    animation: step-slide-right 0.22s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation: step-spring-back 0.32s cubic-bezier(0.22, 1, 0.36, 1) both;
   }
   /* Legacy slide classes (still used by loading/misc screens) */
   .animate-slide-left {
-    animation: step-slide-left 0.22s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation: step-spring-forward 0.28s cubic-bezier(0.22, 1, 0.36, 1) both;
   }
   .animate-slide-right {
-    animation: step-slide-right 0.22s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation: step-spring-back 0.28s cubic-bezier(0.22, 1, 0.36, 1) both;
   }
   .animate-shimmer {
     animation: shimmer 1.8s linear infinite;
     background-size: 200% 100%;
   }
   .animate-glow-pulse {
-    animation: glow-pulse 2.5s ease-in-out infinite;
+    animation: glow-pulse 2s ease-in-out infinite;
   }
   .animate-float {
     animation: float 3s ease-in-out infinite;
+  }
+
+  /* ── Radio row spring cascade (overdrive) ── */
+  /* Each RadioRow uses animationDelay via inline style + this animation */
+  .radio-row {
+    animation: option-spring-in 0.38s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  /* Zodiac grid items */
+  .zodiac-cascade-item {
+    animation: option-spring-in 0.36s cubic-bezier(0.22, 1, 0.36, 1) both;
   }
 
   /* Staggered children — compressed to max 120ms so all items appear together */
@@ -259,6 +271,48 @@
   .selected-ring {
     box-shadow: 0 0 0 2px oklch(0.78 0.14 75 / 0.8), 0 4px 16px oklch(0.78 0.14 75 / 0.2);
   }
+
+  /* ── Saved page components ── */
+  .saved-pill {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 9999px;
+    padding: 0.125rem 0.5rem;
+    font-size: 10px;
+    font-weight: 500;
+    background: oklch(0.78 0.14 75 / 0.1);
+    border: 1px solid oklch(0.78 0.14 75 / 0.2);
+    color: oklch(0.78 0.14 75);
+  }
+
+  .saved-buy-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    border-radius: 9999px;
+    padding: 0.375rem 0.875rem;
+    font-size: 11px;
+    font-weight: 600;
+    transition: all 200ms ease;
+    background: oklch(0.78 0.14 75);
+    color: #1a0f2e;
+  }
+  .saved-buy-btn:hover {
+    filter: brightness(1.08);
+    transform: scale(1.04);
+  }
+  .saved-buy-btn:active {
+    transform: scale(0.96);
+  }
+
+  .saved-card {
+    animation: option-spring-in 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  /* Smooth remove transition */
+  .transition-260 {
+    transition: all 260ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
 }
 
 @keyframes fade-up {
@@ -273,21 +327,64 @@
   from { opacity: 0; transform: scale(0.9); }
   to   { opacity: 1; transform: scale(1); }
 }
-@keyframes step-slide-left {
-  from { opacity: 0; transform: translateX(24px); }
-  to   { opacity: 1; transform: translateX(0); }
+
+/* ── Spring-physics step transitions (overdrive) ── */
+@keyframes step-spring-forward {
+  from {
+    opacity: 0;
+    transform: translateX(32px) scale(0.97);
+    filter: blur(3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    filter: blur(0);
+  }
 }
-@keyframes step-slide-right {
-  from { opacity: 0; transform: translateX(-24px); }
-  to   { opacity: 1; transform: translateX(0); }
+@keyframes step-spring-back {
+  from {
+    opacity: 0;
+    transform: translateX(-32px) scale(0.97);
+    filter: blur(3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    filter: blur(0);
+  }
 }
+
+/* ── Option spring cascade (overdrive) ── */
+@keyframes option-spring-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ── Typewriter cursor blink ── */
+@keyframes cursor-blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+/* ── Pulse dot for loading ── */
+@keyframes pulse-dot {
+  0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
+  40%           { transform: scale(1); opacity: 1; }
+}
+
 @keyframes shimmer {
   from { background-position: 200% 0; }
   to   { background-position: -200% 0; }
 }
 @keyframes glow-pulse {
-  0%, 100% { opacity: 0.6; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.05); }
+  0%, 100% { box-shadow: 0 4px 24px oklch(0.78 0.14 75 / 0.2); }
+  50% { box-shadow: 0 4px 32px oklch(0.78 0.14 75 / 0.5); }
 }
 @keyframes float {
   0%, 100% { transform: translateY(0px); }

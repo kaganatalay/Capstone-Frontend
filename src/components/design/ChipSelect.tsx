@@ -2,6 +2,40 @@
 
 import { cn } from "@/lib/utils";
 
+/** Soft single-wave ripple for chip toggles — subtler than the radio ripple. */
+function fireChipRipple(x: number, y: number, adding: boolean) {
+  if (typeof window === "undefined") return;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  const vw = window.innerWidth;
+  const vh = window.innerHeight;
+  const maxR = Math.max(
+    Math.hypot(x, y), Math.hypot(x - vw, y),
+    Math.hypot(x, y - vh), Math.hypot(x - vw, y - vh),
+  );
+
+  const el = document.createElement("div");
+  // Adding = warm gold; removing = cool silver
+  const color = adding
+    ? "oklch(0.88 0.18 78 / 0.14)"
+    : "oklch(0.70 0.02 260 / 0.10)";
+  el.style.cssText = `
+    position:fixed;inset:0;pointer-events:none;z-index:9999;
+    background:${color};
+    clip-path:circle(0px at ${x}px ${y}px);
+    will-change:clip-path,opacity;
+  `;
+  document.body.appendChild(el);
+  const anim = el.animate(
+    [
+      { clipPath: `circle(0px at ${x}px ${y}px)`, opacity: 1 },
+      { clipPath: `circle(${maxR * 0.70}px at ${x}px ${y}px)`, opacity: 0 },
+    ],
+    { duration: 1100, easing: "cubic-bezier(0.14, 1, 0.22, 1)", fill: "forwards" },
+  );
+  anim.onfinish = () => el.remove();
+}
+
 interface ChipOption {
   id: string;
   label: string;
@@ -50,7 +84,10 @@ export function ChipSelect({
             role="checkbox"
             aria-checked={isSelected}
             disabled={isDisabled}
-            onClick={() => toggle(opt.id)}
+            onClick={(e) => {
+              fireChipRipple(e.clientX, e.clientY, !isSelected);
+              toggle(opt.id);
+            }}
             onKeyDown={(e) => {
               if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggle(opt.id); }
             }}

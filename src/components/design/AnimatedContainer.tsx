@@ -15,9 +15,9 @@ interface AnimatedContainerProps {
 /**
  * AnimatedContainer — remount-based step transitions.
  *
- * Use with `key={step}` on the element; React remounts the component on each
- * key change, which re-runs the CSS entrance animation. No JS timers, no dead
- * zones — the new content appears in a single 220ms slide+fade.
+ * Uses spring-physics-style entrance animations: the question slides in from
+ * depth (slight scale + blur → natural → overshoot spring back).
+ * Triggered by React remount via `key={step}`.
  */
 export function AnimatedContainer({
   children,
