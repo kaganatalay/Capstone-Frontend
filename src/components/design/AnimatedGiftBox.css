@@ -31,7 +31,7 @@
   border-radius: 50%;
   background: radial-gradient(
     circle,
-    oklch(0.38 0.14 10 / 0.18) 0%,
+    oklch(0.26 0.17 10 / 0.18) 0%,
     transparent 70%
   );
   animation: giftGlowPulse 4.8s ease-in-out infinite;
@@ -403,7 +403,7 @@
   inset: -15%;
   border-radius: 50%;
   pointer-events: none;
-  border: 2.5px solid oklch(0.38 0.14 10);
+  border: 2.5px solid oklch(0.26 0.17 10);
 }
 .gift-shockwave-1 {
   animation: giftShockwave 1.1s ease-out 2.15s both;
@@ -411,7 +411,7 @@
 .gift-shockwave-2 {
   animation: giftShockwave 1.3s ease-out 2.35s both;
   border-width: 1.5px;
-  border-color: oklch(0.38 0.14 10 / 0.45);
+  border-color: oklch(0.26 0.17 10 / 0.45);
 }
 .gift-shockwave-3 {
   animation: giftShockwave 1.55s ease-out 2.58s both;

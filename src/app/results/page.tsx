@@ -143,7 +143,7 @@ function MiniSavedDrawer({
         </div>
 
         <div className="px-4 pb-2 pt-1 flex items-center justify-between">
-          <h2 className="text-sm font-semibold" style={{ color: "oklch(0.38 0.14 10)" }}>
+          <h2 className="text-sm font-semibold" style={{ color: "oklch(0.26 0.17 10)" }}>
             Kaydedilen Hediyeler
           </h2>
           <Link
@@ -232,7 +232,7 @@ function MiniCard({ entry, onRemove }: { entry: SavedGift; onRemove: (id: string
         <p className="text-[10px] font-medium leading-tight line-clamp-2" style={{ color: "oklch(0.25 0.04 30)" }}>
           {gift.name}
         </p>
-        <p className="mt-1 text-[11px] font-bold" style={{ color: "oklch(0.38 0.14 10)" }}>
+        <p className="mt-1 text-[11px] font-bold" style={{ color: "oklch(0.26 0.17 10)" }}>
           ₺{gift.price.toLocaleString("tr-TR")}
         </p>
       </div>
@@ -365,7 +365,7 @@ export default function ResultsPage() {
           <div className="min-w-0">
             <h1
               className="text-xl font-bold"
-              style={{ color: "oklch(0.38 0.14 10)" }}
+              style={{ color: "oklch(0.26 0.17 10)" }}
             >
               Senin için en iyi hediyeler ✦
             </h1>
@@ -376,9 +376,9 @@ export default function ResultsPage() {
                     key={pill}
                     className="inline-flex items-center rounded-full px-2.5 py-0.5 text-[11px] font-medium"
                     style={{
-                      background: "oklch(0.38 0.14 10 / 0.10)",
-                      border: "1px solid oklch(0.38 0.14 10 / 0.20)",
-                      color: "oklch(0.38 0.14 10)",
+                      background: "oklch(0.26 0.17 10 / 0.10)",
+                      border: "1px solid oklch(0.26 0.17 10 / 0.20)",
+                      color: "oklch(0.26 0.17 10)",
                     }}
                   >
                     {pill}
@@ -397,9 +397,9 @@ export default function ResultsPage() {
                 onClick={() => setDrawerOpen(true)}
                 className="flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold transition-all duration-200 hover:scale-105 active:scale-95"
                 style={{
-                  background: "oklch(0.38 0.14 10 / 0.10)",
-                  border: "1px solid oklch(0.38 0.14 10 / 0.22)",
-                  color: "oklch(0.38 0.14 10)",
+                  background: "oklch(0.26 0.17 10 / 0.10)",
+                  border: "1px solid oklch(0.26 0.17 10 / 0.22)",
+                  color: "oklch(0.26 0.17 10)",
                 }}
               >
                 🔖 {saved.length}
@@ -451,7 +451,7 @@ export default function ResultsPage() {
               href="/wizard"
               className="mt-2 rounded-2xl px-6 py-3 text-sm font-semibold transition-all hover:scale-105"
               style={{
-                background: "linear-gradient(135deg, oklch(0.50 0.16 10), oklch(0.38 0.14 10))",
+                background: "linear-gradient(135deg, oklch(0.32 0.17 10), oklch(0.26 0.17 10))",
                 color: "oklch(0.97 0.01 80)",
               }}
             >

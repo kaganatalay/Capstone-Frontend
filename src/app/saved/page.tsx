@@ -151,7 +151,7 @@ function SavedCard({
 
         {/* Price + CTA */}
         <div className="mt-auto flex items-center justify-between pt-1">
-          <span className="text-base font-bold" style={{ color: "oklch(0.38 0.14 10)" }}>
+          <span className="text-base font-bold" style={{ color: "oklch(0.26 0.17 10)" }}>
             ₺{gift.price.toLocaleString("tr-TR")}
           </span>
           <a
@@ -198,9 +198,9 @@ function EmptyState() {
         href="/wizard"
         className="mt-2 inline-flex items-center gap-2 rounded-xl px-6 py-3 text-sm font-semibold transition-all duration-200 hover:scale-105 active:scale-95"
         style={{
-          background: "oklch(0.38 0.14 10)",
+          background: "oklch(0.26 0.17 10)",
           color: "oklch(0.97 0.01 80)",
-          boxShadow: "0 4px 16px oklch(0.38 0.14 10 / 0.20)",
+          boxShadow: "0 4px 16px oklch(0.26 0.17 10 / 0.20)",
         }}
       >
         Hediye Ara
@@ -288,7 +288,7 @@ export default function SavedPage() {
               </svg>
             </Link>
             <div>
-              <h1 className="text-lg font-bold" style={{ color: "oklch(0.38 0.14 10)" }}>
+              <h1 className="text-lg font-bold" style={{ color: "oklch(0.26 0.17 10)" }}>
                 Kaydedilen Hediyeler
               </h1>
               {saved.length > 0 && (
@@ -327,7 +327,7 @@ export default function SavedPage() {
               href="/wizard"
               className="rounded-full px-4 py-1.5 text-xs font-semibold transition-all duration-200 hover:scale-105 active:scale-95"
               style={{
-                background: "oklch(0.38 0.14 10)",
+                background: "oklch(0.26 0.17 10)",
                 color: "oklch(0.97 0.01 80)",
               }}
             >

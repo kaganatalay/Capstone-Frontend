@@ -187,7 +187,7 @@ export default function WizardPage() {
                 key={i}
                 className="h-1.5 w-1.5 rounded-full animate-pulse"
                 style={{
-                  background: "oklch(0.38 0.14 10)",
+                  background: "oklch(0.26 0.17 10)",
                   animationDelay: `${i * 220}ms`,
                 }}
               />
@@ -406,9 +406,9 @@ export default function WizardPage() {
               style={
                 stepValid
                   ? {
-                      background: "oklch(0.38 0.14 10)",
+                      background: "oklch(0.26 0.17 10)",
                       color: "oklch(0.97 0.01 80)",
-                      boxShadow: "0 2px 12px oklch(0.38 0.14 10 / 0.20)",
+                      boxShadow: "0 2px 12px oklch(0.26 0.17 10 / 0.20)",
                     }
                   : {
                       background: "oklch(0.93 0.020 80)",
@@ -440,7 +440,7 @@ export default function WizardPage() {
                   onClick={goNext}
                   className="shrink-0 rounded-xl px-4 py-2 text-xs font-semibold transition-all duration-150 hover:brightness-110 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   style={{
-                    background: "oklch(0.38 0.14 10)",
+                    background: "oklch(0.26 0.17 10)",
                     color: "oklch(0.97 0.01 80)",
                   }}
                 >

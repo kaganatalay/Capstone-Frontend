@@ -225,7 +225,7 @@ function fireRipple(
 
   // Wave 1 — main bordo wash: slow, wide, cinematic
   spawnWave({
-    color: "oklch(0.38 0.14 10 / 0.14)",
+    color: "oklch(0.26 0.17 10 / 0.14)",
     startR: 0,
     endR: maxR,
     startOpacity: 1,
@@ -237,7 +237,7 @@ function fireRipple(
 
   // Wave 2 — tighter bloom ring, slightly behind
   spawnWave({
-    color: "oklch(0.50 0.14 10 / 0.10)",
+    color: "oklch(0.32 0.17 10 / 0.10)",
     startR: 0,
     endR: maxR * 0.60,
     startOpacity: 1,
@@ -293,8 +293,8 @@ function RadioRow({ option, questionId, selected, onSelect, index }: RadioRowPro
         animationDelay: `${index * 55}ms`,
         ...(selected
           ? {
-              background: "oklch(0.38 0.14 10 / 0.10)",
-              border: "1.5px solid oklch(0.38 0.14 10 / 0.50)",
+              background: "oklch(0.26 0.17 10 / 0.10)",
+              border: "1.5px solid oklch(0.26 0.17 10 / 0.50)",
             }
           : {
               background: "oklch(0.94 0.022 80)",
@@ -311,7 +311,7 @@ function RadioRow({ option, questionId, selected, onSelect, index }: RadioRowPro
         )}
         style={{
           background: selected
-            ? "oklch(0.38 0.14 10 / 0.15)"
+            ? "oklch(0.26 0.17 10 / 0.15)"
             : "oklch(0 0 0 / 4%)",
         }}
         aria-hidden="true"
@@ -347,8 +347,8 @@ function RadioRow({ option, questionId, selected, onSelect, index }: RadioRowPro
         )}
         style={
           selected
-            ? { background: "oklch(0.38 0.14 10)", color: "oklch(0.97 0.01 80)" }
-            : { border: "1.5px solid oklch(0.38 0.14 10 / 0.5)" }
+            ? { background: "oklch(0.26 0.17 10)", color: "oklch(0.97 0.01 80)" }
+            : { border: "1.5px solid oklch(0.26 0.17 10 / 0.5)" }
         }
         aria-hidden="true"
       >
@@ -398,8 +398,8 @@ function ZodiacGrid({ options, value, onChange }: {
               animationDelay: `${i * 40}ms`,
               ...(selected
                 ? {
-                    background: "oklch(0.38 0.14 10 / 0.10)",
-                    border: "1.5px solid oklch(0.38 0.14 10 / 0.50)",
+                    background: "oklch(0.26 0.17 10 / 0.10)",
+                    border: "1.5px solid oklch(0.26 0.17 10 / 0.50)",
                   }
                 : {
                     background: "oklch(0.94 0.022 80)",

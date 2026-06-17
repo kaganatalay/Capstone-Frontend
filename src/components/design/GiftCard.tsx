@@ -15,7 +15,7 @@ interface GiftCardProps {
 
 const RANK_COLORS: Record<number, { bg: string; text: string; label: string }> = {
   1: {
-    bg: "linear-gradient(135deg, oklch(0.50 0.16 10), oklch(0.38 0.14 10))",
+    bg: "linear-gradient(135deg, oklch(0.32 0.17 10), oklch(0.26 0.17 10))",
     text: "oklch(0.97 0.01 80)",
     label: "🥇",
   },
@@ -134,7 +134,7 @@ export function GiftCard({ item, rank, onSave, saved }: GiftCardProps) {
           <div className="mt-1 flex items-center justify-between">
             <span
               className="text-base font-bold"
-              style={{ color: "oklch(0.38 0.14 10)" }}  /* bordo price */
+              style={{ color: "oklch(0.26 0.17 10)" }}  /* bordo price */
             >
               ₺{item.price.toLocaleString("tr-TR")}
             </span>
@@ -153,10 +153,10 @@ export function GiftCard({ item, rank, onSave, saved }: GiftCardProps) {
                   className="flex h-7 w-7 items-center justify-center rounded-full transition-all duration-200 active:scale-90 hover:scale-110"
                   style={{
                     background: saved
-                      ? "oklch(0.38 0.14 10 / 0.15)"
+                      ? "oklch(0.26 0.17 10 / 0.15)"
                       : "oklch(0 0 0 / 4%)",
                     border: saved
-                      ? "1px solid oklch(0.38 0.14 10 / 0.35)"
+                      ? "1px solid oklch(0.26 0.17 10 / 0.35)"
                       : "1px solid oklch(0 0 0 / 8%)",
                   }}
                 >

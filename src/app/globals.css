@@ -68,7 +68,7 @@
   --popover: oklch(0.99 0.012 80);
   --popover-foreground: oklch(0.20 0.04 30);
   /* Bordo as primary */
-  --primary: oklch(0.38 0.14 10);
+  --primary: oklch(0.26 0.17 10);
   --primary-foreground: oklch(0.97 0.01 80);
   /* Asker yeşili as secondary/accent */
   --secondary: oklch(0.92 0.025 80);
@@ -80,8 +80,8 @@
   --destructive: oklch(0.55 0.22 22);
   --border: oklch(0 0 0 / 12%);
   --input: oklch(0 0 0 / 8%);
-  --ring: oklch(0.38 0.14 10);
-  --chart-1: oklch(0.38 0.14 10);
+  --ring: oklch(0.26 0.17 10);
+  --chart-1: oklch(0.26 0.17 10);
   --chart-2: oklch(0.38 0.09 145);
   --chart-3: oklch(0.55 0.12 50);
   --chart-4: oklch(0.48 0.10 200);
@@ -89,22 +89,22 @@
   --radius: 0.875rem;
   --sidebar: oklch(0.94 0.022 80);
   --sidebar-foreground: oklch(0.20 0.04 30);
-  --sidebar-primary: oklch(0.38 0.14 10);
+  --sidebar-primary: oklch(0.26 0.17 10);
   --sidebar-primary-foreground: oklch(0.97 0.01 80);
   --sidebar-accent: oklch(0.38 0.09 145);
   --sidebar-accent-foreground: oklch(0.97 0.01 80);
   --sidebar-border: oklch(0 0 0 / 10%);
-  --sidebar-ring: oklch(0.38 0.14 10);
+  --sidebar-ring: oklch(0.26 0.17 10);
 
   /* Custom brand tokens — bordo */
-  --brand: oklch(0.38 0.14 10);
+  --brand: oklch(0.26 0.17 10);
   --brand-foreground: oklch(0.97 0.01 80);
-  --brand-muted: oklch(0.92 0.04 10);
+  --brand-muted: oklch(0.91 0.06 10);
   --surface: oklch(0.96 0.025 80);
   --surface-raised: oklch(0.99 0.012 80);
   /* Keep --gold token pointing to bordo so refs still resolve */
-  --gold: oklch(0.38 0.14 10);
-  --gold-muted: oklch(0.92 0.04 10);
+  --gold: oklch(0.26 0.17 10);
+  --gold-muted: oklch(0.91 0.06 10);
 }
 
 /* ─── Light override (unused in this design) ─────────────────── */
@@ -165,9 +165,9 @@
     overscroll-behavior-y: none;
     /* Subtle warm krem texture */
     background-image:
-      radial-gradient(ellipse 120% 80% at 50% -20%, oklch(0.88 0.06 10 / 0.35) 0%, transparent 60%),
+      radial-gradient(ellipse 120% 80% at 50% -20%, oklch(0.72 0.09 10 / 0.35) 0%, transparent 60%),
       radial-gradient(ellipse 60% 40% at 100% 100%, oklch(0.85 0.07 145 / 0.12) 0%, transparent 50%),
-      radial-gradient(ellipse 50% 30% at 0% 80%, oklch(0.88 0.05 10 / 0.10) 0%, transparent 50%);
+      radial-gradient(ellipse 50% 30% at 0% 80%, oklch(0.75 0.07 10 / 0.12) 0%, transparent 50%);
     background-attachment: fixed;
   }
 
@@ -247,7 +247,7 @@
 
   /* Bordo brand text */
   .text-gold {
-    color: oklch(0.38 0.14 10);
+    color: oklch(0.26 0.17 10);
   }
 
   /* Glass card */
@@ -266,12 +266,12 @@
 
   /* Bordo glow on hover */
   .hover-glow:hover {
-    box-shadow: 0 0 0 1px oklch(0.38 0.14 10 / 0.4), 0 8px 32px oklch(0.38 0.14 10 / 0.10);
+    box-shadow: 0 0 0 1px oklch(0.26 0.17 10 / 0.4), 0 8px 32px oklch(0.26 0.17 10 / 0.10);
   }
 
   /* Selected state ring */
   .selected-ring {
-    box-shadow: 0 0 0 2px oklch(0.38 0.14 10 / 0.7), 0 4px 16px oklch(0.38 0.14 10 / 0.15);
+    box-shadow: 0 0 0 2px oklch(0.26 0.17 10 / 0.7), 0 4px 16px oklch(0.26 0.17 10 / 0.15);
   }
 
   /* ── Saved page components ── */
@@ -282,9 +282,9 @@
     padding: 0.125rem 0.5rem;
     font-size: 10px;
     font-weight: 500;
-    background: oklch(0.38 0.14 10 / 0.08);
-    border: 1px solid oklch(0.38 0.14 10 / 0.18);
-    color: oklch(0.38 0.14 10);
+    background: oklch(0.26 0.17 10 / 0.08);
+    border: 1px solid oklch(0.26 0.17 10 / 0.18);
+    color: oklch(0.26 0.17 10);
   }
 
   .saved-buy-btn {
@@ -296,7 +296,7 @@
     font-size: 11px;
     font-weight: 600;
     transition: all 200ms ease;
-    background: oklch(0.38 0.14 10);
+    background: oklch(0.26 0.17 10);
     color: oklch(0.97 0.01 80);
   }
   .saved-buy-btn:hover {
@@ -385,8 +385,8 @@
   to   { background-position: -200% 0; }
 }
 @keyframes glow-pulse {
-  0%, 100% { box-shadow: 0 4px 24px oklch(0.38 0.14 10 / 0.15); }
-  50% { box-shadow: 0 4px 32px oklch(0.38 0.14 10 / 0.35); }
+  0%, 100% { box-shadow: 0 4px 24px oklch(0.26 0.17 10 / 0.15); }
+  50% { box-shadow: 0 4px 32px oklch(0.26 0.17 10 / 0.35); }
 }
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
@@ -397,7 +397,7 @@
 ::-webkit-scrollbar { width: 4px; height: 4px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: oklch(0 0 0 / 15%); border-radius: 9999px; }
-::-webkit-scrollbar-thumb:hover { background: oklch(0.38 0.14 10 / 35%); }
+::-webkit-scrollbar-thumb:hover { background: oklch(0.26 0.17 10 / 35%); }
 
 /* ─── Reduced motion ─────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {

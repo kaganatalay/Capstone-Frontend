@@ -36,9 +36,9 @@
 }
 
 @keyframes topCardGlow {
-  0%   { box-shadow: 0 0 0 0px oklch(0.38 0.14 10 / 0); }
-  30%  { box-shadow: 0 0 0 3px oklch(0.38 0.14 10 / 0.40), 0 8px 32px oklch(0.38 0.14 10 / 0.12); }
-  100% { box-shadow: 0 0 0 0px oklch(0.38 0.14 10 / 0); }
+  0%   { box-shadow: 0 0 0 0px oklch(0.26 0.17 10 / 0); }
+  30%  { box-shadow: 0 0 0 3px oklch(0.26 0.17 10 / 0.40), 0 8px 32px oklch(0.26 0.17 10 / 0.12); }
+  100% { box-shadow: 0 0 0 0px oklch(0.26 0.17 10 / 0); }
 }
 
 /* ── Reduced motion ───────────────────────────────────────────── */
