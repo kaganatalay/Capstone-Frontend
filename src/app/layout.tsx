@@ -19,12 +19,17 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Hediye Öneri — Mükemmel Hediyeyi Bul",
+  title: "Gifty - Mükemmel Hediyeyi Bul",
   description:
     "14 kısa soruyu yanıtla, yapay zekâ sana özel hediyeler önersin. Trendyol'dan anında sipariş.",
-  keywords: ["hediye", "hediye fikirleri", "kişiselleştirilmiş hediye", "hediye öneri"],
+  keywords: [
+    "hediye",
+    "hediye fikirleri",
+    "kişiselleştirilmiş hediye",
+    "hediye öneri",
+  ],
   openGraph: {
-    title: "Hediye Öneri — Mükemmel Hediyeyi Bul",
+    title: "Gifty - Mükemmel Hediyeyi Bul",
     description: "14 soruyu yanıtla, mükemmel hediyeyi bul.",
     type: "website",
   },
@@ -35,9 +40,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="tr" className={`${playfair.variable} ${dmSans.variable}`}>
-      <body className="min-h-dvh bg-background antialiased">
-        {children}
-      </body>
+      <body className="min-h-dvh bg-background antialiased">{children}</body>
     </html>
   );
 }

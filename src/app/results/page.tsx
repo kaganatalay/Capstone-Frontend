@@ -357,7 +357,7 @@ export default function ResultsPage() {
       <div
         className="sticky top-0 z-10 backdrop-blur-xl"
         style={{
-          background: "oklch(0.90 0.030 80 / 0.95)",
+          background: "oklch(0.92 0.025 80 / 0.96)",
           borderBottom: "1px solid oklch(0 0 0 / 12%)",
         }}
       >
