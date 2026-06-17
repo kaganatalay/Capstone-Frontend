@@ -99,7 +99,7 @@ export function GiftCard({ item, rank, onSave, saved }: GiftCardProps) {
             {/* Name */}
             <h2
               className="text-sm font-semibold leading-snug line-clamp-2 transition-colors duration-200"
-              style={{ color: "oklch(0.95 0.01 65)" }}
+              style={{ color: "oklch(0.18 0.04 30)" }}
             >
               {item.name}
             </h2>
