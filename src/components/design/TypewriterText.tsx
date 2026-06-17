@@ -86,7 +86,7 @@ export function TypewriterText({
               display: "inline-block",
               width: "2px",
               height: "1.1em",
-              background: "oklch(0.82 0.14 75)",
+              background: "oklch(0.38 0.14 10)",
               marginLeft: "2px",
               verticalAlign: "text-bottom",
               borderRadius: "1px",

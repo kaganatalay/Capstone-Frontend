@@ -96,7 +96,7 @@ function TypingDots() {
             width: "5px",
             height: "5px",
             borderRadius: "9999px",
-            background: "oklch(0.78 0.14 75 / 70%)",
+            background: "oklch(0.38 0.14 10 / 70%)",
             animation: "ai-dot-pulse 1.2s ease-in-out infinite",
             animationDelay: `${i * 0.18}s`,
           }}
@@ -129,13 +129,13 @@ function MessageBubble({ msg, isNew }: { msg: Message; isNew?: boolean }) {
             width: "24px",
             height: "24px",
             borderRadius: "9999px",
-            background: "oklch(0.78 0.14 75 / 10%)",
-            border: "1px solid oklch(0.78 0.14 75 / 18%)",
+            background: "oklch(0.38 0.14 10 / 10%)",
+            border: "1px solid oklch(0.38 0.14 10 / 18%)",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
             fontSize: "10px",
-            color: "oklch(0.78 0.14 75)",
+            color: "oklch(0.38 0.14 10)",
             marginRight: "8px",
             marginTop: "1px",
             flexShrink: 0,
@@ -150,12 +150,12 @@ function MessageBubble({ msg, isNew }: { msg: Message; isNew?: boolean }) {
           padding: "9px 13px",
           borderRadius: isUser ? "14px 14px 4px 14px" : "4px 14px 14px 14px",
           background: isUser
-            ? "oklch(0.78 0.14 75 / 13%)"
-            : "oklch(0.21 0.046 310)",
+            ? "oklch(0.38 0.14 10 / 10%)"
+            : "oklch(0.97 0.012 80)",
           border: isUser
-            ? "1px solid oklch(0.78 0.14 75 / 20%)"
-            : "1px solid oklch(1 0 0 / 7%)",
-          color: "oklch(0.92 0.012 65)",
+            ? "1px solid oklch(0.38 0.14 10 / 18%)"
+            : "1px solid oklch(0 0 0 / 8%)",
+          color: "oklch(0.20 0.04 30)",
           fontSize: "13px",
           lineHeight: "1.56",
           whiteSpace: "pre-wrap",
@@ -169,7 +169,7 @@ function MessageBubble({ msg, isNew }: { msg: Message; isNew?: boolean }) {
               display: "inline-block",
               width: "2px",
               height: "12px",
-              background: "oklch(0.78 0.14 75 / 75%)",
+              background: "oklch(0.38 0.14 10 / 75%)",
               marginLeft: "2px",
               verticalAlign: "text-bottom",
               animation: "ai-cursor-blink 0.85s step-end infinite",
@@ -413,9 +413,9 @@ export function AiChat({ items, submission }: AiChatProps) {
         }
         .ai-trigger-btn:hover {
           transform: scale(1.06) translateY(-1px);
-          box-shadow: 0 8px 32px oklch(0 0 0 / 0.45),
-                      0 0 0 1px oklch(0.78 0.14 75 / 0.28),
-                      0 0 20px oklch(0.78 0.14 75 / 0.1);
+          box-shadow: 0 8px 32px oklch(0 0 0 / 0.12),
+                      0 0 0 1px oklch(0.38 0.14 10 / 0.20),
+                      0 0 20px oklch(0.38 0.14 10 / 0.06);
         }
         .ai-trigger-btn:active { transform: scale(0.96); }
         .ai-chip {
@@ -426,17 +426,17 @@ export function AiChat({ items, submission }: AiChatProps) {
         }
         .ai-chip:hover:not(:disabled) {
           transform: translateY(-1px);
-          background: oklch(0.78 0.14 75 / 17%) !important;
-          border-color: oklch(0.78 0.14 75 / 38%) !important;
-          box-shadow: 0 4px 12px oklch(0.78 0.14 75 / 0.08);
+          background: oklch(0.38 0.14 10 / 17%) !important;
+          border-color: oklch(0.38 0.14 10 / 38%) !important;
+          box-shadow: 0 4px 12px oklch(0.38 0.14 10 / 0.06);
         }
         .ai-chip:active:not(:disabled) { transform: scale(0.96); }
         .ai-send-btn {
           transition: background 140ms ease, color 140ms ease, transform 140ms ease;
         }
         .ai-send-btn:hover:not(:disabled) {
-          background: oklch(0.82 0.14 75) !important;
-          color: oklch(0.12 0.03 310) !important;
+          background: oklch(0.45 0.14 10) !important;
+          color: oklch(0.97 0.01 80) !important;
           transform: scale(1.06);
         }
         .ai-send-btn:active:not(:disabled) { transform: scale(0.94); }
@@ -452,7 +452,7 @@ export function AiChat({ items, submission }: AiChatProps) {
         }
         .ai-handle-area:hover .ai-handle-pip,
         .ai-handle-area:active .ai-handle-pip {
-          background: oklch(0.78 0.14 75 / 45%) !important;
+          background: oklch(0.38 0.14 10 / 45%) !important;
           width: 44px !important;
         }
         /* ── Desktop: constrain panel width, center it ── */
@@ -506,9 +506,9 @@ export function AiChat({ items, submission }: AiChatProps) {
             gap: "7px",
             padding: "10px 18px",
             borderRadius: "9999px",
-            background: "oklch(0.17 0.042 310 / 96%)",
-            border: "1px solid oklch(0.78 0.14 75 / 28%)",
-            color: "oklch(0.82 0.14 75)",
+            background: "oklch(0.94 0.022 80 / 96%)",
+            border: "1px solid oklch(0.38 0.14 10 / 28%)",
+            color: "oklch(0.38 0.14 10)",
             fontSize: "13px",
             fontWeight: "600",
             backdropFilter: "blur(16px) saturate(140%)",
@@ -555,12 +555,12 @@ export function AiChat({ items, submission }: AiChatProps) {
               display: "flex",
               flexDirection: "column",
               borderRadius: "22px 22px 0 0",
-              background: "oklch(0.155 0.04 310 / 97%)",
-              backdropFilter: "blur(28px) saturate(170%)",
-              border: "1px solid oklch(1 0 0 / 10%)",
+              background: "oklch(0.98 0.010 80 / 97%)",
+              backdropFilter: "blur(28px) saturate(120%)",
+              border: "1px solid oklch(0 0 0 / 8%)",
               borderBottom: "none",
               boxShadow:
-                "0 -12px 48px oklch(0 0 0 / 0.45), 0 -1px 0 oklch(1 0 0 / 0.08), inset 0 1px 0 oklch(1 0 0 / 0.07)",
+                "0 -8px 32px oklch(0 0 0 / 0.12), 0 -1px 0 oklch(0 0 0 / 0.04), inset 0 1px 0 oklch(1 0 0 / 0.8)",
               transform: `translateY(${dragY}px)`,
               transition: panelTransition,
               animation:
@@ -594,7 +594,7 @@ export function AiChat({ items, submission }: AiChatProps) {
                   width: "36px",
                   height: "4px",
                   borderRadius: "9999px",
-                  background: "oklch(1 0 0 / 16%)",
+                  background: "oklch(0 0 0 / 10%)",
                 }}
               />
 
@@ -613,7 +613,7 @@ export function AiChat({ items, submission }: AiChatProps) {
                   <span
                     style={{
                       fontSize: "12px",
-                      color: "oklch(0.78 0.14 75)",
+                      color: "oklch(0.38 0.14 10)",
                       lineHeight: 1,
                     }}
                   >
@@ -623,7 +623,7 @@ export function AiChat({ items, submission }: AiChatProps) {
                     style={{
                       fontSize: "13px",
                       fontWeight: "600",
-                      color: "oklch(0.88 0.015 65)",
+                      color: "oklch(0.22 0.04 30)",
                       letterSpacing: "0.01em",
                     }}
                   >
@@ -633,7 +633,7 @@ export function AiChat({ items, submission }: AiChatProps) {
                     <span
                       style={{
                         fontSize: "11px",
-                        color: "oklch(0.58 0.022 60)",
+                        color: "oklch(0.55 0.04 40)",
                       }}
                     >
                       yazıyor...
@@ -652,20 +652,20 @@ export function AiChat({ items, submission }: AiChatProps) {
                     width: "28px",
                     height: "28px",
                     borderRadius: "9999px",
-                    background: "oklch(1 0 0 / 6%)",
+                    background: "oklch(0 0 0 / 5%)",
                     border: "none",
-                    color: "oklch(0.58 0.018 65)",
+                    color: "oklch(0.55 0.02 40)",
                     cursor: "pointer",
                     transition: "background 140ms ease, color 140ms ease",
                     flexShrink: 0,
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.background = "oklch(1 0 0 / 11%)";
-                    e.currentTarget.style.color = "oklch(0.78 0.02 65)";
+                    e.currentTarget.style.background = "oklch(0 0 0 / 9%)";
+                    e.currentTarget.style.color = "oklch(0.30 0.04 30)";
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.background = "oklch(1 0 0 / 6%)";
-                    e.currentTarget.style.color = "oklch(0.58 0.018 65)";
+                    e.currentTarget.style.background = "oklch(0 0 0 / 5%)";
+                    e.currentTarget.style.color = "oklch(0.55 0.02 40)";
                   }}
                 >
                   <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
@@ -684,7 +684,7 @@ export function AiChat({ items, submission }: AiChatProps) {
             <div
               style={{
                 height: "1px",
-                background: "oklch(1 0 0 / 7%)",
+                background: "oklch(0 0 0 / 5%)",
                 flexShrink: 0,
               }}
             />
@@ -696,7 +696,7 @@ export function AiChat({ items, submission }: AiChatProps) {
                 overflowY: "auto",
                 padding: "14px 14px 6px",
                 scrollbarWidth: "thin",
-                scrollbarColor: "oklch(1 0 0 / 10%) transparent",
+                scrollbarColor: "oklch(0.70 0.05 80 / 30%) transparent",
               }}
             >
               {!hasMessages ? (
@@ -718,13 +718,13 @@ export function AiChat({ items, submission }: AiChatProps) {
                       width: "48px",
                       height: "48px",
                       borderRadius: "14px",
-                      background: "oklch(0.78 0.14 75 / 9%)",
-                      border: "1px solid oklch(0.78 0.14 75 / 16%)",
+                      background: "oklch(0.30 0.15 25 / 9%)",
+                      border: "1px solid oklch(0.30 0.15 25 / 16%)",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
                       fontSize: "20px",
-                      color: "oklch(0.78 0.14 75)",
+                      color: "oklch(0.30 0.15 25)",
                       animation:
                         "ai-msg-in 0.4s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both",
                     }}
@@ -735,7 +735,7 @@ export function AiChat({ items, submission }: AiChatProps) {
                   <p
                     style={{
                       fontSize: "13px",
-                      color: "oklch(0.60 0.022 60)",
+                      color: "oklch(0.55 0.04 40)",
                       lineHeight: "1.5",
                       maxWidth: "230px",
                       animation:
@@ -765,9 +765,9 @@ export function AiChat({ items, submission }: AiChatProps) {
                           animationDelay: `${0.24 + i * 0.07}s`,
                           padding: "7px 13px",
                           borderRadius: "9999px",
-                          background: "oklch(0.78 0.14 75 / 8%)",
-                          border: "1px solid oklch(0.78 0.14 75 / 20%)",
-                          color: "oklch(0.80 0.14 75)",
+                          background: "oklch(0.30 0.15 25 / 8%)",
+                          border: "1px solid oklch(0.30 0.15 25 / 20%)",
+                          color: "oklch(0.35 0.15 25)",
                           fontSize: "12px",
                           fontWeight: "500",
                           cursor: "pointer",
@@ -797,9 +797,9 @@ export function AiChat({ items, submission }: AiChatProps) {
                     margin: "6px 0 10px",
                     padding: "9px 12px",
                     borderRadius: "10px",
-                    background: "oklch(0.65 0.22 22 / 10%)",
-                    border: "1px solid oklch(0.65 0.22 22 / 22%)",
-                    color: "oklch(0.80 0.14 25)",
+                    background: "oklch(0.60 0.15 25 / 10%)",
+                    border: "1px solid oklch(0.60 0.15 25 / 22%)",
+                    color: "oklch(0.40 0.15 25)",
                     fontSize: "12px",
                     display: "flex",
                     alignItems: "center",
@@ -821,7 +821,7 @@ export function AiChat({ items, submission }: AiChatProps) {
                       flexShrink: 0,
                       fontSize: "11px",
                       fontWeight: "600",
-                      color: "oklch(0.80 0.14 25)",
+                      color: "oklch(0.40 0.15 25)",
                       background: "none",
                       border: "none",
                       cursor: "pointer",
@@ -843,7 +843,7 @@ export function AiChat({ items, submission }: AiChatProps) {
               style={{
                 flexShrink: 0,
                 padding: "10px 12px 16px",
-                borderTop: "1px solid oklch(1 0 0 / 7%)",
+                borderTop: "1px solid oklch(0 0 0 / 7%)",
                 display: "flex",
                 gap: "8px",
                 alignItems: "center",
@@ -863,9 +863,9 @@ export function AiChat({ items, submission }: AiChatProps) {
                   flex: 1,
                   padding: "9px 13px",
                   borderRadius: "11px",
-                  background: "oklch(0.20 0.044 310)",
-                  border: "1px solid oklch(1 0 0 / 10%)",
-                  color: "oklch(0.92 0.012 65)",
+                  background: "oklch(0.93 0.010 80)",
+                  border: "1px solid oklch(0 0 0 / 10%)",
+                  color: "oklch(0.20 0.04 30)",
                   fontSize: "13px",
                   outline: "none",
                   transition: "border-color 150ms ease, box-shadow 150ms ease",
@@ -873,12 +873,12 @@ export function AiChat({ items, submission }: AiChatProps) {
                 }}
                 onFocus={(e) => {
                   e.currentTarget.style.borderColor =
-                    "oklch(0.78 0.14 75 / 42%)";
+                    "oklch(0.30 0.15 25 / 42%)";
                   e.currentTarget.style.boxShadow =
-                    "0 0 0 3px oklch(0.78 0.14 75 / 0.07)";
+                    "0 0 0 3px oklch(0.30 0.15 25 / 0.07)";
                 }}
                 onBlur={(e) => {
-                  e.currentTarget.style.borderColor = "oklch(1 0 0 / 10%)";
+                  e.currentTarget.style.borderColor = "oklch(0 0 0 / 10%)";
                   e.currentTarget.style.boxShadow = "none";
                 }}
               />
@@ -896,13 +896,13 @@ export function AiChat({ items, submission }: AiChatProps) {
                   borderRadius: "11px",
                   background:
                     streaming || !input.trim()
-                      ? "oklch(0.21 0.044 310)"
-                      : "oklch(0.78 0.14 75 / 18%)",
-                  border: "1px solid oklch(1 0 0 / 10%)",
+                      ? "oklch(0.90 0.020 80)"
+                      : "oklch(0.38 0.14 10 / 15%)",
+                  border: "1px solid oklch(0 0 0 / 10%)",
                   color:
                     streaming || !input.trim()
-                      ? "oklch(0.38 0.012 65)"
-                      : "oklch(0.82 0.14 75)",
+                      ? "oklch(0.60 0.02 40)"
+                      : "oklch(0.38 0.14 10)",
                   cursor:
                     streaming || !input.trim() ? "not-allowed" : "pointer",
                   display: "flex",

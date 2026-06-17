@@ -17,8 +17,8 @@ function fireChipRipple(x: number, y: number, adding: boolean) {
   const el = document.createElement("div");
   // Adding = warm gold; removing = cool silver
   const color = adding
-    ? "oklch(0.88 0.18 78 / 0.14)"
-    : "oklch(0.70 0.02 260 / 0.10)";
+    ? "oklch(0.38 0.14 10 / 0.12)"
+    : "oklch(0.38 0.09 145 / 0.08)";
   el.style.cssText = `
     position:fixed;inset:0;pointer-events:none;z-index:9999;
     background:${color};
@@ -101,14 +101,14 @@ export function ChipSelect({
             style={
               isSelected
                 ? {
-                    background: "oklch(0.26 0.065 75 / 0.45)",
-                    border: "1.5px solid oklch(0.78 0.14 75 / 0.55)",
-                    color: "oklch(0.94 0.012 65)",
+                    background: "oklch(0.38 0.14 10 / 0.10)",
+                    border: "1.5px solid oklch(0.38 0.14 10 / 0.50)",
+                    color: "oklch(0.22 0.04 30)",
                   }
                 : {
-                    background: "oklch(0.2 0.04 310 / 55%)",
-                    border: "1px solid oklch(1 0 0 / 7%)",
-                    color: "oklch(0.68 0.018 65)",
+                    background: "oklch(0.94 0.022 80)",
+                    border: "1px solid oklch(0 0 0 / 8%)",
+                    color: "oklch(0.45 0.04 40)",
                   }
             }
           >
@@ -124,7 +124,7 @@ export function ChipSelect({
             {isSelected && (
               <span
                 className="flex h-4 w-4 items-center justify-center rounded-full"
-                style={{ background: "oklch(0.78 0.14 75)", color: "#1a0f2e" }}
+                style={{ background: "oklch(0.38 0.14 10)", color: "oklch(0.97 0.01 80)" }}
                 aria-hidden="true"
               >
                 <svg width="8" height="7" viewBox="0 0 8 7" fill="none">

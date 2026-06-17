@@ -127,10 +127,10 @@ function MiniSavedDrawer({
       <div
         className="fixed bottom-0 left-0 right-0 z-40 mx-auto max-w-xl rounded-t-2xl backdrop-blur-xl transition-transform duration-350 ease-out"
         style={{
-          background: "oklch(0.16 0.04 310 / 96%)",
-          border: "1px solid oklch(1 0 0 / 10%)",
+          background: "oklch(0.98 0.010 80 / 96%)",
+          border: "1px solid oklch(0 0 0 / 8%)",
           borderBottom: "none",
-          boxShadow: "0 -8px 32px oklch(0 0 0 / 0.4)",
+          boxShadow: "0 -6px 24px oklch(0 0 0 / 0.10)",
           transform: open ? "translateY(0)" : "translateY(110%)",
         }}
       >
@@ -138,18 +138,18 @@ function MiniSavedDrawer({
         <div className="flex justify-center pt-3 pb-1">
           <div
             className="h-1 w-10 rounded-full"
-            style={{ background: "oklch(1 0 0 / 15%)" }}
+            style={{ background: "oklch(0 0 0 / 10%)" }}
           />
         </div>
 
         <div className="px-4 pb-2 pt-1 flex items-center justify-between">
-          <h2 className="text-sm font-semibold" style={{ color: "oklch(0.82 0.14 75)" }}>
+          <h2 className="text-sm font-semibold" style={{ color: "oklch(0.38 0.14 10)" }}>
             Kaydedilen Hediyeler
           </h2>
           <Link
             href="/saved"
             className="text-xs font-medium transition-colors hover:text-foreground inline-flex items-center gap-1"
-            style={{ color: "oklch(0.55 0.015 260)" }}
+            style={{ color: "oklch(0.50 0.03 40)" }}
           >
             Tümünü gör <ArrowRight size={12} />
           </Link>
@@ -159,7 +159,7 @@ function MiniSavedDrawer({
         <div className="overflow-x-auto pb-safe-area-inset-bottom">
           <div className="flex gap-3 px-4 pb-5 pt-2" style={{ width: "max-content" }}>
             {entries.length === 0 && (
-              <p className="text-sm py-6 px-2" style={{ color: "oklch(0.50 0.015 260)" }}>
+              <p className="text-sm py-6 px-2" style={{ color: "oklch(0.55 0.03 40)" }}>
                 Henüz kaydedilen hediye yok
               </p>
             )}
@@ -187,14 +187,14 @@ function MiniCard({ entry, onRemove }: { entry: SavedGift; onRemove: (id: string
       className="group relative flex-shrink-0 overflow-hidden rounded-xl"
       style={{
         width: 120,
-        background: "oklch(0.20 0.045 310)",
-        border: "1px solid oklch(1 0 0 / 8%)",
+        background: "oklch(0.97 0.012 80)",
+        border: "1px solid oklch(0 0 0 / 7%)",
       }}
     >
       {/* Image */}
       <div
         className="relative"
-        style={{ height: 90, background: "oklch(0.16 0.035 310)" }}
+        style={{ height: 90, background: "oklch(0.93 0.020 80)" }}
       >
         {hasImage ? (
           <Image
@@ -217,9 +217,9 @@ function MiniCard({ entry, onRemove }: { entry: SavedGift; onRemove: (id: string
           onClick={() => onRemove(gift.id)}
           className="absolute right-1 top-1 flex h-6 w-6 items-center justify-center rounded-full opacity-0 group-hover:opacity-100 transition-all duration-150"
           style={{
-            background: "oklch(0.14 0.035 310 / 80%)",
-            border: "1px solid oklch(1 0 0 / 10%)",
-            color: "oklch(0.65 0.2 27)",
+            background: "oklch(0.96 0.018 80 / 85%)",
+            border: "1px solid oklch(0 0 0 / 8%)",
+            color: "oklch(0.45 0.18 22)",
           }}
         >
           <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
@@ -229,10 +229,10 @@ function MiniCard({ entry, onRemove }: { entry: SavedGift; onRemove: (id: string
       </div>
       {/* Info */}
       <div className="p-2">
-        <p className="text-[10px] font-medium leading-tight line-clamp-2" style={{ color: "oklch(0.88 0.01 65)" }}>
+        <p className="text-[10px] font-medium leading-tight line-clamp-2" style={{ color: "oklch(0.25 0.04 30)" }}>
           {gift.name}
         </p>
-        <p className="mt-1 text-[11px] font-bold" style={{ color: "oklch(0.82 0.14 75)" }}>
+        <p className="mt-1 text-[11px] font-bold" style={{ color: "oklch(0.38 0.14 10)" }}>
           ₺{gift.price.toLocaleString("tr-TR")}
         </p>
       </div>
@@ -309,12 +309,12 @@ export default function ResultsPage() {
       <main className="min-h-dvh">
         <div className="mx-auto max-w-5xl px-4 pt-8 space-y-5">
           <div className="space-y-2">
-            <Skeleton className="h-7 w-56 rounded-xl" style={{ background: "oklch(1 0 0 / 6%)" }} />
-            <Skeleton className="h-4 w-80 rounded-lg" style={{ background: "oklch(1 0 0 / 4%)" }} />
+            <Skeleton className="h-7 w-56 rounded-xl" style={{ background: "oklch(0 0 0 / 6%)" }} />
+            <Skeleton className="h-4 w-80 rounded-lg" style={{ background: "oklch(0 0 0 / 4%)" }} />
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 mt-4">
             {Array.from({ length: 6 }).map((_, i) => (
-              <Skeleton key={i} className="h-28 w-full rounded-2xl" style={{ background: "oklch(1 0 0 / 5%)" }} />
+              <Skeleton key={i} className="h-28 w-full rounded-2xl" style={{ background: "oklch(0 0 0 / 5%)" }} />
             ))}
           </div>
         </div>
@@ -349,7 +349,7 @@ export default function ResultsPage() {
         aria-hidden="true"
         style={{
           background:
-            "radial-gradient(ellipse 80% 50% at 50% 0%, oklch(0.25 0.07 310 / 0.5), transparent 60%)",
+            "radial-gradient(ellipse 80% 50% at 50% 0%, oklch(0.75 0.06 10 / 0.15), transparent 60%)",
         }}
       />
 
@@ -357,15 +357,15 @@ export default function ResultsPage() {
       <div
         className="sticky top-0 z-10 backdrop-blur-xl"
         style={{
-          background: "oklch(0.14 0.035 310 / 0.88)",
-          borderBottom: "1px solid oklch(1 0 0 / 8%)",
+          background: "oklch(0.96 0.025 80 / 0.92)",
+          borderBottom: "1px solid oklch(0 0 0 / 8%)",
         }}
       >
         <div className="mx-auto flex max-w-5xl items-start justify-between gap-4 px-4 py-4">
           <div className="min-w-0">
             <h1
               className="text-xl font-bold"
-              style={{ color: "oklch(0.82 0.14 75)" }}
+              style={{ color: "oklch(0.38 0.14 10)" }}
             >
               Senin için en iyi hediyeler ✦
             </h1>
@@ -376,9 +376,9 @@ export default function ResultsPage() {
                     key={pill}
                     className="inline-flex items-center rounded-full px-2.5 py-0.5 text-[11px] font-medium"
                     style={{
-                      background: "oklch(0.78 0.14 75 / 0.12)",
-                      border: "1px solid oklch(0.78 0.14 75 / 0.2)",
-                      color: "oklch(0.78 0.14 75)",
+                      background: "oklch(0.38 0.14 10 / 0.10)",
+                      border: "1px solid oklch(0.38 0.14 10 / 0.20)",
+                      color: "oklch(0.38 0.14 10)",
                     }}
                   >
                     {pill}
@@ -397,9 +397,9 @@ export default function ResultsPage() {
                 onClick={() => setDrawerOpen(true)}
                 className="flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold transition-all duration-200 hover:scale-105 active:scale-95"
                 style={{
-                  background: "oklch(0.78 0.14 75 / 0.12)",
-                  border: "1px solid oklch(0.78 0.14 75 / 0.25)",
-                  color: "oklch(0.82 0.14 75)",
+                  background: "oklch(0.38 0.14 10 / 0.10)",
+                  border: "1px solid oklch(0.38 0.14 10 / 0.22)",
+                  color: "oklch(0.38 0.14 10)",
                 }}
               >
                 🔖 {saved.length}
@@ -412,9 +412,9 @@ export default function ResultsPage() {
                 href="/saved"
                 className="hidden sm:flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-medium transition-all duration-200 hover:scale-105"
                 style={{
-                  background: "oklch(0.22 0.04 310)",
-                  border: "1px solid oklch(1 0 0 / 10%)",
-                  color: "oklch(0.7 0.02 65)",
+                  background: "oklch(0.93 0.020 80)",
+                  border: "1px solid oklch(0 0 0 / 8%)",
+                  color: "oklch(0.40 0.04 40)",
                 }}
               >
                 Kaydettiklerim
@@ -425,9 +425,9 @@ export default function ResultsPage() {
               href="/wizard"
               className="rounded-full px-4 py-1.5 text-xs font-semibold transition-all duration-200 hover:scale-105 active:scale-95"
               style={{
-                background: "oklch(0.22 0.04 310)",
-                border: "1px solid oklch(1 0 0 / 10%)",
-                color: "oklch(0.8 0.015 65)",
+                background: "oklch(0.93 0.020 80)",
+                border: "1px solid oklch(0 0 0 / 8%)",
+                color: "oklch(0.40 0.04 40)",
               }}
             >
               Yeniden Başla
@@ -451,8 +451,8 @@ export default function ResultsPage() {
               href="/wizard"
               className="mt-2 rounded-2xl px-6 py-3 text-sm font-semibold transition-all hover:scale-105"
               style={{
-                background: "linear-gradient(135deg, oklch(0.82 0.14 75), oklch(0.68 0.18 65))",
-                color: "#1a0f2e",
+                background: "linear-gradient(135deg, oklch(0.50 0.16 10), oklch(0.38 0.14 10))",
+                color: "oklch(0.97 0.01 80)",
               }}
             >
               Tekrar Dene
@@ -505,10 +505,10 @@ export default function ResultsPage() {
           aria-live="polite"
           className="fixed bottom-6 left-1/2 -translate-x-1/2 rounded-full px-5 py-2.5 animate-fade-up whitespace-nowrap z-50"
           style={{
-            background: "oklch(0.22 0.05 310)",
-            border: "1px solid oklch(1 0 0 / 12%)",
-            boxShadow: "0 8px 24px oklch(0 0 0 / 0.3)",
-            color: "oklch(0.9 0.015 65)",
+            background: "oklch(0.93 0.020 80)",
+            border: "1px solid oklch(0 0 0 / 10%)",
+            boxShadow: "0 8px 24px oklch(0 0 0 / 0.06)",
+            color: "oklch(0.25 0.04 30)",
             fontSize: "13px",
             fontWeight: "600",
           }}

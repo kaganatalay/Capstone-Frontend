@@ -15,8 +15,8 @@ interface GiftCardProps {
 
 const RANK_COLORS: Record<number, { bg: string; text: string; label: string }> = {
   1: {
-    bg: "linear-gradient(135deg, oklch(0.82 0.14 75), oklch(0.68 0.18 65))",
-    text: "#1a0f2e",
+    bg: "linear-gradient(135deg, oklch(0.50 0.16 10), oklch(0.38 0.14 10))",
+    text: "oklch(0.97 0.01 80)",
     label: "🥇",
   },
   2: {
@@ -43,8 +43,8 @@ export function GiftCard({ item, rank, onSave, saved }: GiftCardProps) {
       href={`/results/${item.id}`}
       className="group block overflow-hidden rounded-2xl transition-all duration-200 hover:-translate-y-0.5 active:scale-[0.99]"
       style={{
-        background: "oklch(0.18 0.04 310 / 85%)",
-        boxShadow: "0 2px 12px oklch(0 0 0 / 0.3), 0 1px 0 oklch(1 0 0 / 0.05) inset",
+        background: "oklch(0.99 0.010 80 / 88%)",
+        boxShadow: "0 2px 12px oklch(0 0 0 / 0.08), 0 1px 0 oklch(0 0 0 / 0.04) inset",
       }}
     >
       <div className="flex gap-0">
@@ -54,8 +54,8 @@ export function GiftCard({ item, rank, onSave, saved }: GiftCardProps) {
           style={{
             width: 110,
             minHeight: 110,
-            background: "oklch(0.15 0.03 310)",
-            borderRight: "1px solid oklch(1 0 0 / 6%)",
+            background: "oklch(0.92 0.020 80)",
+            borderRight: "1px solid oklch(0 0 0 / 6%)",
           }}
         >
           {hasImage ? (
@@ -81,9 +81,9 @@ export function GiftCard({ item, rank, onSave, saved }: GiftCardProps) {
                 rankStyle
                   ? { background: rankStyle.bg, color: rankStyle.text }
                   : {
-                      background: "oklch(0.25 0.05 310)",
-                      border: "1px solid oklch(1 0 0 / 15%)",
-                      color: "oklch(0.7 0.02 65)",
+                      background: "oklch(0.88 0.030 80)",
+                      border: "1px solid oklch(0 0 0 / 10%)",
+                      color: "oklch(0.40 0.04 40)",
                       fontSize: "9px",
                     }
               }
@@ -134,7 +134,7 @@ export function GiftCard({ item, rank, onSave, saved }: GiftCardProps) {
           <div className="mt-1 flex items-center justify-between">
             <span
               className="text-base font-bold"
-              style={{ color: "oklch(0.82 0.14 75)" }}
+              style={{ color: "oklch(0.38 0.14 10)" }}  /* bordo price */
             >
               ₺{item.price.toLocaleString("tr-TR")}
             </span>
@@ -153,11 +153,11 @@ export function GiftCard({ item, rank, onSave, saved }: GiftCardProps) {
                   className="flex h-7 w-7 items-center justify-center rounded-full transition-all duration-200 active:scale-90 hover:scale-110"
                   style={{
                     background: saved
-                      ? "oklch(0.78 0.14 75 / 0.2)"
-                      : "oklch(1 0 0 / 5%)",
+                      ? "oklch(0.38 0.14 10 / 0.15)"
+                      : "oklch(0 0 0 / 4%)",
                     border: saved
-                      ? "1px solid oklch(0.78 0.14 75 / 0.4)"
-                      : "1px solid oklch(1 0 0 / 10%)",
+                      ? "1px solid oklch(0.38 0.14 10 / 0.35)"
+                      : "1px solid oklch(0 0 0 / 8%)",
                   }}
                 >
                   <span className="text-sm">{saved ? "🔖" : "☆"}</span>

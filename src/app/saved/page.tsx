@@ -46,9 +46,9 @@ function SavedCard({
     <article
       className="saved-card group relative flex flex-col overflow-hidden rounded-2xl"
       style={{
-        background: "oklch(0.18 0.04 310 / 90%)",
-        border: "1px solid oklch(1 0 0 / 8%)",
-        boxShadow: "0 4px 20px oklch(0 0 0 / 0.25), 0 1px 0 oklch(1 0 0 / 0.06) inset",
+        background: "oklch(0.99 0.010 80 / 92%)",
+        border: "1px solid oklch(0 0 0 / 7%)",
+        boxShadow: "0 4px 20px oklch(0 0 0 / 0.06), 0 1px 0 oklch(1 0 0 / 0.5) inset",
         ...style,
       }}
     >
@@ -57,8 +57,8 @@ function SavedCard({
         className="relative w-full overflow-hidden"
         style={{
           height: 180,
-          background: "oklch(0.14 0.03 310)",
-          borderBottom: "1px solid oklch(1 0 0 / 6%)",
+          background: "oklch(0.93 0.020 80)",
+          borderBottom: "1px solid oklch(0 0 0 / 6%)",
         }}
       >
         {hasImage ? (
@@ -83,10 +83,10 @@ function SavedCard({
           onClick={() => onRemove(gift.id)}
           className="absolute right-2 top-2 flex h-8 w-8 items-center justify-center rounded-full opacity-0 group-hover:opacity-100 transition-all duration-200 hover:scale-110 active:scale-90 focus-visible:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           style={{
-            background: "oklch(0.14 0.035 310 / 80%)",
+            background: "oklch(0.96 0.018 80 / 82%)",
             backdropFilter: "blur(8px)",
-            border: "1px solid oklch(1 0 0 / 10%)",
-            color: "oklch(0.65 0.2 27)",
+            border: "1px solid oklch(0 0 0 / 8%)",
+            color: "oklch(0.45 0.18 22)",
           }}
         >
           <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
@@ -98,10 +98,10 @@ function SavedCard({
         <div
           className="absolute left-2 bottom-2 rounded-full px-2 py-0.5 text-[10px] font-medium"
           style={{
-            background: "oklch(0.14 0.035 310 / 75%)",
+            background: "oklch(0.94 0.018 80 / 75%)",
             backdropFilter: "blur(8px)",
-            border: "1px solid oklch(1 0 0 / 8%)",
-            color: "oklch(0.55 0.015 260)",
+            border: "1px solid oklch(0 0 0 / 7%)",
+            color: "oklch(0.55 0.03 40)",
           }}
         >
           🔖 {formatDate(savedAt)}
@@ -114,12 +114,12 @@ function SavedCard({
         <div>
           <h2
             className="text-sm font-semibold leading-snug line-clamp-2"
-            style={{ color: "oklch(0.95 0.01 65)" }}
+            style={{ color: "oklch(0.22 0.04 30)" }}
           >
             {gift.name}
           </h2>
           {(gift.brand || gift.category) && (
-            <p className="mt-0.5 text-[11px] line-clamp-1" style={{ color: "oklch(0.52 0.018 65)" }}>
+            <p className="mt-0.5 text-[11px] line-clamp-1" style={{ color: "oklch(0.55 0.03 40)" }}>
               {[gift.brand, gift.category?.split(">").pop()?.trim()]
                 .filter(Boolean)
                 .join(" · ")}
@@ -144,14 +144,14 @@ function SavedCard({
 
         {/* Reason snippet */}
         {gift.reason && (
-          <p className="text-[11px] leading-snug line-clamp-2" style={{ color: "oklch(0.55 0.02 60)" }}>
+          <p className="text-[11px] leading-snug line-clamp-2" style={{ color: "oklch(0.50 0.03 40)" }}>
             ✦ {gift.reason.split(" · ")[0]}
           </p>
         )}
 
         {/* Price + CTA */}
         <div className="mt-auto flex items-center justify-between pt-1">
-          <span className="text-base font-bold" style={{ color: "oklch(0.82 0.14 75)" }}>
+          <span className="text-base font-bold" style={{ color: "oklch(0.38 0.14 10)" }}>
             ₺{gift.price.toLocaleString("tr-TR")}
           </span>
           <a
@@ -180,17 +180,17 @@ function EmptyState() {
       <div
         className="flex h-24 w-24 items-center justify-center rounded-3xl text-5xl animate-float"
         style={{
-          background: "oklch(0.20 0.045 310)",
-          border: "1px solid oklch(1 0 0 / 8%)",
+          background: "oklch(0.93 0.020 80)",
+          border: "1px solid oklch(0 0 0 / 7%)",
         }}
       >
         🔖
       </div>
       <div className="space-y-2">
-        <h2 className="text-lg font-semibold" style={{ color: "oklch(0.9 0.01 65)" }}>
+        <h2 className="text-lg font-semibold" style={{ color: "oklch(0.22 0.04 30)" }}>
           Henüz kaydedilen hediye yok
         </h2>
-        <p className="text-sm max-w-[28ch] mx-auto" style={{ color: "oklch(0.55 0.02 60)" }}>
+        <p className="text-sm max-w-[28ch] mx-auto" style={{ color: "oklch(0.50 0.03 40)" }}>
           Öneriler sayfasında beğendiğin hediyeleri kaydet, burada toplu görebilirsin.
         </p>
       </div>
@@ -198,9 +198,9 @@ function EmptyState() {
         href="/wizard"
         className="mt-2 inline-flex items-center gap-2 rounded-xl px-6 py-3 text-sm font-semibold transition-all duration-200 hover:scale-105 active:scale-95"
         style={{
-          background: "oklch(0.78 0.14 75)",
-          color: "#1a0f2e",
-          boxShadow: "0 4px 16px oklch(0.78 0.14 75 / 0.3)",
+          background: "oklch(0.38 0.14 10)",
+          color: "oklch(0.97 0.01 80)",
+          boxShadow: "0 4px 16px oklch(0.38 0.14 10 / 0.20)",
         }}
       >
         Hediye Ara
@@ -244,10 +244,10 @@ export default function SavedPage() {
     return (
       <main className="min-h-dvh">
         <div className="mx-auto max-w-5xl px-4 pt-8">
-          <div className="h-8 w-48 rounded-xl animate-pulse" style={{ background: "oklch(1 0 0 / 6%)" }} />
+          <div className="h-8 w-48 rounded-xl animate-pulse" style={{ background: "oklch(0 0 0 / 6%)" }} />
           <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {[1, 2, 3].map((i) => (
-              <div key={i} className="h-72 rounded-2xl animate-pulse" style={{ background: "oklch(1 0 0 / 5%)" }} />
+              <div key={i} className="h-72 rounded-2xl animate-pulse" style={{ background: "oklch(0 0 0 / 5%)" }} />
             ))}
           </div>
         </div>
@@ -263,7 +263,7 @@ export default function SavedPage() {
         aria-hidden="true"
         style={{
           background:
-            "radial-gradient(ellipse 70% 40% at 50% 0%, oklch(0.22 0.07 310 / 0.45), transparent 55%)",
+            "radial-gradient(ellipse 70% 40% at 50% 0%, oklch(0.75 0.06 10 / 0.10), transparent 55%)",
         }}
       />
 
@@ -271,8 +271,8 @@ export default function SavedPage() {
       <div
         className="sticky top-0 z-20 backdrop-blur-xl"
         style={{
-          background: "oklch(0.14 0.035 310 / 0.90)",
-          borderBottom: "1px solid oklch(1 0 0 / 8%)",
+          background: "oklch(0.96 0.025 80 / 0.92)",
+          borderBottom: "1px solid oklch(0 0 0 / 8%)",
         }}
       >
         <div className="mx-auto flex max-w-5xl items-center justify-between gap-4 px-4 py-4">
@@ -280,19 +280,19 @@ export default function SavedPage() {
             <Link
               href="/results"
               aria-label="Geri dön"
-              className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full transition-all duration-150 hover:bg-white/10 active:scale-90"
-              style={{ color: "oklch(0.65 0.02 60)" }}
+              className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full transition-all duration-150 hover:bg-black/5 active:scale-90"
+              style={{ color: "oklch(0.50 0.03 40)" }}
             >
               <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
                 <path d="M11 14L6 9l5-5" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
             </Link>
             <div>
-              <h1 className="text-lg font-bold" style={{ color: "oklch(0.82 0.14 75)" }}>
+              <h1 className="text-lg font-bold" style={{ color: "oklch(0.38 0.14 10)" }}>
                 Kaydedilen Hediyeler
               </h1>
               {saved.length > 0 && (
-                <p className="text-xs" style={{ color: "oklch(0.50 0.015 260)" }}>
+                <p className="text-xs" style={{ color: "oklch(0.55 0.03 40)" }}>
                   {saved.length} hediye kaydedildi
                 </p>
               )}
@@ -314,9 +314,9 @@ export default function SavedPage() {
                         color: "oklch(0.72 0.18 22)",
                       }
                     : {
-                        background: "oklch(0.22 0.04 310)",
-                        border: "1px solid oklch(1 0 0 / 10%)",
-                        color: "oklch(0.55 0.015 260)",
+                        background: "oklch(0.93 0.020 80)",
+                        border: "1px solid oklch(0 0 0 / 8%)",
+                        color: "oklch(0.50 0.03 40)",
                       }
                 }
               >
@@ -327,8 +327,8 @@ export default function SavedPage() {
               href="/wizard"
               className="rounded-full px-4 py-1.5 text-xs font-semibold transition-all duration-200 hover:scale-105 active:scale-95"
               style={{
-                background: "oklch(0.78 0.14 75)",
-                color: "#1a0f2e",
+                background: "oklch(0.38 0.14 10)",
+                color: "oklch(0.97 0.01 80)",
               }}
             >
               Yeni Arama

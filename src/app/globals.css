@@ -58,51 +58,53 @@
   --color-gold-muted: var(--gold-muted);
 }
 
-/* ─── Dark/Luxury Mode (default — this app is always "dark luxury") ── */
+/* ─── Krem / Bordo / Asker Yeşili Theme ──────────────────────── */
 :root {
-  /* Deep warm plum background */
-  --background: oklch(0.14 0.035 310);
-  --foreground: oklch(0.96 0.012 65);
-  --card: oklch(0.18 0.04 310);
-  --card-foreground: oklch(0.96 0.012 65);
-  --popover: oklch(0.18 0.04 310);
-  --popover-foreground: oklch(0.96 0.012 65);
-  /* Gold as primary */
-  --primary: oklch(0.78 0.14 75);
-  --primary-foreground: oklch(0.12 0.03 310);
-  --secondary: oklch(0.22 0.045 310);
-  --secondary-foreground: oklch(0.85 0.02 65);
-  --muted: oklch(0.22 0.04 310);
-  --muted-foreground: oklch(0.6 0.025 60);
-  --accent: oklch(0.25 0.055 310);
-  --accent-foreground: oklch(0.9 0.015 65);
-  --destructive: oklch(0.65 0.22 22);
-  --border: oklch(1 0 0 / 9%);
-  --input: oklch(1 0 0 / 12%);
-  --ring: oklch(0.78 0.14 75);
-  --chart-1: oklch(0.78 0.14 75);
-  --chart-2: oklch(0.65 0.18 340);
-  --chart-3: oklch(0.6 0.16 200);
-  --chart-4: oklch(0.7 0.12 130);
-  --chart-5: oklch(0.55 0.14 280);
+  /* Krem rengi background */
+  --background: oklch(0.96 0.025 80);
+  --foreground: oklch(0.20 0.04 30);
+  --card: oklch(0.99 0.012 80);
+  --card-foreground: oklch(0.20 0.04 30);
+  --popover: oklch(0.99 0.012 80);
+  --popover-foreground: oklch(0.20 0.04 30);
+  /* Bordo as primary */
+  --primary: oklch(0.38 0.14 10);
+  --primary-foreground: oklch(0.97 0.01 80);
+  /* Asker yeşili as secondary/accent */
+  --secondary: oklch(0.92 0.025 80);
+  --secondary-foreground: oklch(0.25 0.05 30);
+  --muted: oklch(0.92 0.02 80);
+  --muted-foreground: oklch(0.50 0.04 40);
+  --accent: oklch(0.38 0.09 145);
+  --accent-foreground: oklch(0.97 0.01 80);
+  --destructive: oklch(0.55 0.22 22);
+  --border: oklch(0 0 0 / 12%);
+  --input: oklch(0 0 0 / 8%);
+  --ring: oklch(0.38 0.14 10);
+  --chart-1: oklch(0.38 0.14 10);
+  --chart-2: oklch(0.38 0.09 145);
+  --chart-3: oklch(0.55 0.12 50);
+  --chart-4: oklch(0.48 0.10 200);
+  --chart-5: oklch(0.50 0.12 330);
   --radius: 0.875rem;
-  --sidebar: oklch(0.16 0.038 310);
-  --sidebar-foreground: oklch(0.96 0.012 65);
-  --sidebar-primary: oklch(0.78 0.14 75);
-  --sidebar-primary-foreground: oklch(0.12 0.03 310);
-  --sidebar-accent: oklch(0.22 0.045 310);
-  --sidebar-accent-foreground: oklch(0.85 0.02 65);
-  --sidebar-border: oklch(1 0 0 / 8%);
-  --sidebar-ring: oklch(0.78 0.14 75);
+  --sidebar: oklch(0.94 0.022 80);
+  --sidebar-foreground: oklch(0.20 0.04 30);
+  --sidebar-primary: oklch(0.38 0.14 10);
+  --sidebar-primary-foreground: oklch(0.97 0.01 80);
+  --sidebar-accent: oklch(0.38 0.09 145);
+  --sidebar-accent-foreground: oklch(0.97 0.01 80);
+  --sidebar-border: oklch(0 0 0 / 10%);
+  --sidebar-ring: oklch(0.38 0.14 10);
 
-  /* Custom */
-  --brand: oklch(0.78 0.14 75);
-  --brand-foreground: oklch(0.12 0.03 310);
-  --brand-muted: oklch(0.25 0.06 75);
-  --surface: oklch(0.14 0.035 310);
-  --surface-raised: oklch(0.18 0.04 310);
-  --gold: oklch(0.78 0.14 75);
-  --gold-muted: oklch(0.28 0.07 75);
+  /* Custom brand tokens — bordo */
+  --brand: oklch(0.38 0.14 10);
+  --brand-foreground: oklch(0.97 0.01 80);
+  --brand-muted: oklch(0.92 0.04 10);
+  --surface: oklch(0.96 0.025 80);
+  --surface-raised: oklch(0.99 0.012 80);
+  /* Keep --gold token pointing to bordo so refs still resolve */
+  --gold: oklch(0.38 0.14 10);
+  --gold-muted: oklch(0.92 0.04 10);
 }
 
 /* ─── Light override (unused in this design) ─────────────────── */
@@ -161,11 +163,11 @@
     @apply bg-background text-foreground;
     min-height: 100dvh;
     overscroll-behavior-y: none;
-    /* Subtle noise texture for depth */
+    /* Subtle warm krem texture */
     background-image:
-      radial-gradient(ellipse 120% 80% at 50% -20%, oklch(0.25 0.06 310 / 0.6) 0%, transparent 60%),
-      radial-gradient(ellipse 60% 40% at 100% 100%, oklch(0.22 0.05 75 / 0.25) 0%, transparent 50%),
-      radial-gradient(ellipse 50% 30% at 0% 80%, oklch(0.2 0.06 340 / 0.2) 0%, transparent 50%);
+      radial-gradient(ellipse 120% 80% at 50% -20%, oklch(0.88 0.06 10 / 0.35) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 100% 100%, oklch(0.85 0.07 145 / 0.12) 0%, transparent 50%),
+      radial-gradient(ellipse 50% 30% at 0% 80%, oklch(0.88 0.05 10 / 0.10) 0%, transparent 50%);
     background-attachment: fixed;
   }
 
@@ -243,33 +245,33 @@
   .stagger-children > *:nth-child(13) { animation-delay: 120ms; }
   .stagger-children > *:nth-child(14) { animation-delay: 120ms; }
 
-  /* Solid gold text — no gradient-text anti-pattern */
+  /* Bordo brand text */
   .text-gold {
-    color: oklch(0.82 0.14 75);
+    color: oklch(0.38 0.14 10);
   }
 
   /* Glass card */
   .glass {
-    background: oklch(1 0 0 / 4%);
-    backdrop-filter: blur(16px) saturate(150%);
-    border: 1px solid oklch(1 0 0 / 10%);
+    background: oklch(1 0 0 / 50%);
+    backdrop-filter: blur(16px) saturate(120%);
+    border: 1px solid oklch(0 0 0 / 8%);
   }
 
   .glass-card {
-    background: oklch(0.18 0.04 310 / 80%);
-    backdrop-filter: blur(20px) saturate(160%);
-    border: 1px solid oklch(1 0 0 / 10%);
-    box-shadow: 0 4px 24px oklch(0 0 0 / 0.3), inset 0 1px 0 oklch(1 0 0 / 0.08);
+    background: oklch(0.99 0.012 80 / 85%);
+    backdrop-filter: blur(20px) saturate(130%);
+    border: 1px solid oklch(0 0 0 / 8%);
+    box-shadow: 0 4px 24px oklch(0 0 0 / 0.08), inset 0 1px 0 oklch(1 0 0 / 0.6);
   }
 
-  /* Gold glow on hover */
+  /* Bordo glow on hover */
   .hover-glow:hover {
-    box-shadow: 0 0 0 1px oklch(0.78 0.14 75 / 0.5), 0 8px 32px oklch(0.78 0.14 75 / 0.15);
+    box-shadow: 0 0 0 1px oklch(0.38 0.14 10 / 0.4), 0 8px 32px oklch(0.38 0.14 10 / 0.10);
   }
 
   /* Selected state ring */
   .selected-ring {
-    box-shadow: 0 0 0 2px oklch(0.78 0.14 75 / 0.8), 0 4px 16px oklch(0.78 0.14 75 / 0.2);
+    box-shadow: 0 0 0 2px oklch(0.38 0.14 10 / 0.7), 0 4px 16px oklch(0.38 0.14 10 / 0.15);
   }
 
   /* ── Saved page components ── */
@@ -280,9 +282,9 @@
     padding: 0.125rem 0.5rem;
     font-size: 10px;
     font-weight: 500;
-    background: oklch(0.78 0.14 75 / 0.1);
-    border: 1px solid oklch(0.78 0.14 75 / 0.2);
-    color: oklch(0.78 0.14 75);
+    background: oklch(0.38 0.14 10 / 0.08);
+    border: 1px solid oklch(0.38 0.14 10 / 0.18);
+    color: oklch(0.38 0.14 10);
   }
 
   .saved-buy-btn {
@@ -294,8 +296,8 @@
     font-size: 11px;
     font-weight: 600;
     transition: all 200ms ease;
-    background: oklch(0.78 0.14 75);
-    color: #1a0f2e;
+    background: oklch(0.38 0.14 10);
+    color: oklch(0.97 0.01 80);
   }
   .saved-buy-btn:hover {
     filter: brightness(1.08);
@@ -383,8 +385,8 @@
   to   { background-position: -200% 0; }
 }
 @keyframes glow-pulse {
-  0%, 100% { box-shadow: 0 4px 24px oklch(0.78 0.14 75 / 0.2); }
-  50% { box-shadow: 0 4px 32px oklch(0.78 0.14 75 / 0.5); }
+  0%, 100% { box-shadow: 0 4px 24px oklch(0.38 0.14 10 / 0.15); }
+  50% { box-shadow: 0 4px 32px oklch(0.38 0.14 10 / 0.35); }
 }
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
@@ -394,8 +396,8 @@
 /* ─── Scrollbar ──────────────────────────────────────────────── */
 ::-webkit-scrollbar { width: 4px; height: 4px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: oklch(1 0 0 / 15%); border-radius: 9999px; }
-::-webkit-scrollbar-thumb:hover { background: oklch(0.78 0.14 75 / 40%); }
+::-webkit-scrollbar-thumb { background: oklch(0 0 0 / 15%); border-radius: 9999px; }
+::-webkit-scrollbar-thumb:hover { background: oklch(0.38 0.14 10 / 35%); }
 
 /* ─── Reduced motion ─────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {

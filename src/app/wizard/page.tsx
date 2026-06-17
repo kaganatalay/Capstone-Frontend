@@ -187,7 +187,7 @@ export default function WizardPage() {
                 key={i}
                 className="h-1.5 w-1.5 rounded-full animate-pulse"
                 style={{
-                  background: "oklch(0.78 0.14 75)",
+                  background: "oklch(0.38 0.14 10)",
                   animationDelay: `${i * 220}ms`,
                 }}
               />
@@ -205,13 +205,13 @@ export default function WizardPage() {
     return (
       <main className="flex min-h-dvh flex-col items-center justify-center gap-5 px-5 text-center">
         <span className="text-5xl">😕</span>
-        <p className="text-sm" style={{ color: "oklch(0.58 0.02 60)" }}>{questionsError}</p>
+        <p className="text-sm" style={{ color: "oklch(0.50 0.03 40)" }}>{questionsError}</p>
         <button
           onClick={() => window.location.reload()}
           className="rounded-xl px-6 py-3 text-sm font-semibold transition-all hover:brightness-105 active:scale-95"
           style={{
-            background: "oklch(0.78 0.14 75)",
-            color: "#1a0f2e",
+              background: "oklch(0.40 0.15 25)",
+              color: "oklch(0.98 0.005 95)",
           }}
         >
           Tekrar dene
@@ -231,8 +231,8 @@ export default function WizardPage() {
           className="pointer-events-none absolute inset-0 -z-10 transition-all duration-700"
           style={{
             background: blasting
-              ? "radial-gradient(ellipse 80% 70% at 50% 50%, oklch(0.42 0.14 75 / 0.28), transparent 60%)"
-              : "radial-gradient(ellipse 60% 50% at 50% 50%, oklch(0.3 0.08 75 / 0.12), transparent 65%)",
+              ? "radial-gradient(ellipse 80% 70% at 50% 50%, oklch(0.40 0.15 25 / 0.18), transparent 60%)"
+              : "radial-gradient(ellipse 60% 50% at 50% 50%, oklch(0.40 0.15 25 / 0.08), transparent 65%)",
           }}
         />
 
@@ -248,12 +248,12 @@ export default function WizardPage() {
             className="transition-all duration-300"
             style={{ opacity: blasting ? 0 : 1, transform: blasting ? "translateY(8px)" : "translateY(0)" }}
           >
-            <p className="text-xl font-semibold" style={{ color: "oklch(0.82 0.14 75)" }}>
+            <p className="text-xl font-semibold" style={{ color: "oklch(0.40 0.15 25)" }}>
               En iyi hediyeler aranıyor...
             </p>
             <p
               className="mt-2 text-sm transition-all duration-500"
-              style={{ color: "oklch(0.58 0.02 60)" }}
+              style={{ color: "oklch(0.50 0.03 40)" }}
             >
               {LOADING_MESSAGES[loadingMsgIdx]}
             </p>
@@ -264,12 +264,12 @@ export default function WizardPage() {
             <p
               className="absolute animate-fade-up text-2xl font-semibold"
               style={{
-                color: "oklch(0.94 0.18 80)",
+                color: "oklch(0.40 0.15 25)",
                 animationDelay: "2300ms",
                 animationFillMode: "both",
                 top: "calc(100% + 1.5rem)",
                 whiteSpace: "nowrap",
-                textShadow: "0 0 40px oklch(0.82 0.14 75 / 0.55)",
+                textShadow: "0 0 40px oklch(0.40 0.15 25 / 0.45)",
               }}
             >
               Hediyeler hazır ✦
@@ -285,7 +285,7 @@ export default function WizardPage() {
                   key={i}
                   className="h-1.5 w-1.5 rounded-full"
                   style={{
-                    background: "oklch(0.78 0.14 75)",
+                    background: "oklch(0.40 0.15 25)",
                     animation: "pulse-dot 1.4s ease-in-out infinite",
                     animationDelay: `${i * 200}ms`,
                   }}
@@ -306,8 +306,8 @@ export default function WizardPage() {
       <div
         className="sticky top-0 z-10 backdrop-blur-xl"
         style={{
-          background: "oklch(0.14 0.035 310 / 0.88)",
-          borderBottom: "1px solid oklch(1 0 0 / 7%)",
+          background: "oklch(0.98 0.005 95 / 0.92)",
+          borderBottom: "1px solid oklch(0 0 0 / 8%)",
         }}
       >
         <div className="mx-auto max-w-2xl px-4 pt-4 pb-3">
@@ -318,8 +318,8 @@ export default function WizardPage() {
               type="button"
               onClick={goBack}
               aria-label="Geri dön"
-              className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full transition-all duration-150 hover:bg-white/10 active:scale-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-              style={{ color: "oklch(0.65 0.02 60)" }}
+              className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full transition-all duration-150 hover:bg-black/5 active:scale-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              style={{ color: "oklch(0.50 0.03 40)" }}
             >
               <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
                 <path d="M11 14L6 9l5-5" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"/>
@@ -334,9 +334,9 @@ export default function WizardPage() {
             {/* Step counter */}
             <span
               className="text-xs font-semibold tabular-nums whitespace-nowrap shrink-0"
-              style={{ color: "oklch(0.55 0.015 260)" }}
+              style={{ color: "oklch(0.50 0.03 40)" }}
             >
-              {step + 1}<span style={{ color: "oklch(0.38 0.01 260)" }}>/{questions.length}</span>
+              {step + 1}<span style={{ color: "oklch(0.68 0.02 40)" }}>/{questions.length}</span>
             </span>
           </div>
         </div>
@@ -363,7 +363,7 @@ export default function WizardPage() {
                 />
               </h1>
               {isMulti && (
-                <p className="text-sm animate-fade-in" style={{ color: "oklch(0.55 0.015 260)", animationDelay: "120ms" }}>
+                <p className="text-sm animate-fade-in" style={{ color: "oklch(0.50 0.03 40)", animationDelay: "120ms" }}>
                   {stepHint(currentQuestion)}
                 </p>
               )}
@@ -383,13 +383,13 @@ export default function WizardPage() {
       <div
         className="fixed bottom-0 left-0 right-0 z-10 backdrop-blur-xl"
         style={{
-          background: "oklch(0.14 0.035 310 / 0.92)",
-          borderTop: "1px solid oklch(1 0 0 / 7%)",
+          background: "oklch(0.96 0.025 80 / 0.95)",
+          borderTop: "1px solid oklch(0 0 0 / 8%)",
         }}
       >
         <div className="mx-auto max-w-2xl px-4 py-4 flex flex-col gap-2.5">
           {error && (
-            <p role="alert" className="text-center text-sm" style={{ color: "oklch(0.65 0.2 27)" }}>
+            <p role="alert" className="text-center text-sm" style={{ color: "oklch(0.45 0.18 22)" }}>
               {error}
             </p>
           )}
@@ -406,13 +406,13 @@ export default function WizardPage() {
               style={
                 stepValid
                   ? {
-                      background: "oklch(0.78 0.14 75)",
-                      color: "#1a0f2e",
-                      boxShadow: "0 2px 12px oklch(0.78 0.14 75 / 0.25)",
+                      background: "oklch(0.38 0.14 10)",
+                      color: "oklch(0.97 0.01 80)",
+                      boxShadow: "0 2px 12px oklch(0.38 0.14 10 / 0.20)",
                     }
                   : {
-                      background: "oklch(0.22 0.04 310)",
-                      color: "oklch(0.4 0.01 260)",
+                      background: "oklch(0.93 0.020 80)",
+                      color: "oklch(0.60 0.02 40)",
                       cursor: "not-allowed",
                     }
               }
@@ -440,8 +440,8 @@ export default function WizardPage() {
                   onClick={goNext}
                   className="shrink-0 rounded-xl px-4 py-2 text-xs font-semibold transition-all duration-150 hover:brightness-110 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   style={{
-                    background: "oklch(0.78 0.14 75)",
-                    color: "#1a0f2e",
+                    background: "oklch(0.38 0.14 10)",
+                    color: "oklch(0.97 0.01 80)",
                   }}
                 >
                   {isLastStep ? "Hediyeleri bul" : <span className="flex items-center justify-center gap-1.5">İleri <ArrowRight size={14} /></span>}
