@@ -127,7 +127,7 @@ function MiniSavedDrawer({
       <div
         className="fixed bottom-0 left-0 right-0 z-40 mx-auto max-w-xl rounded-t-2xl backdrop-blur-xl transition-transform duration-350 ease-out"
         style={{
-          background: "oklch(0.98 0.010 80 / 96%)",
+          background: "rgba(252,249,234,0.96)",
           border: "1px solid oklch(0 0 0 / 8%)",
           borderBottom: "none",
           boxShadow: "0 -6px 24px oklch(0 0 0 / 0.10)",
@@ -143,7 +143,7 @@ function MiniSavedDrawer({
         </div>
 
         <div className="px-4 pb-2 pt-1 flex items-center justify-between">
-          <h2 className="text-sm font-semibold" style={{ color: "oklch(0.26 0.17 10)" }}>
+          <h2 className="text-sm font-semibold" style={{ color: "#FFBDBD" }}>
             Kaydedilen Hediyeler
           </h2>
           <Link
@@ -187,14 +187,14 @@ function MiniCard({ entry, onRemove }: { entry: SavedGift; onRemove: (id: string
       className="group relative flex-shrink-0 overflow-hidden rounded-xl"
       style={{
         width: 120,
-        background: "oklch(0.97 0.012 80)",
+        background: "#FFFDF3",
         border: "1px solid oklch(0 0 0 / 7%)",
       }}
     >
       {/* Image */}
       <div
         className="relative"
-        style={{ height: 90, background: "oklch(0.93 0.020 80)" }}
+        style={{ height: 90, background: "#F0EDD8" }}
       >
         {hasImage ? (
           <Image
@@ -217,7 +217,7 @@ function MiniCard({ entry, onRemove }: { entry: SavedGift; onRemove: (id: string
           onClick={() => onRemove(gift.id)}
           className="absolute right-1 top-1 flex h-6 w-6 items-center justify-center rounded-full opacity-0 group-hover:opacity-100 transition-all duration-150"
           style={{
-            background: "oklch(0.96 0.018 80 / 85%)",
+            background: "rgba(252,249,234,0.85)",
             border: "1px solid oklch(0 0 0 / 8%)",
             color: "oklch(0.45 0.18 22)",
           }}
@@ -232,7 +232,7 @@ function MiniCard({ entry, onRemove }: { entry: SavedGift; onRemove: (id: string
         <p className="text-[10px] font-medium leading-tight line-clamp-2" style={{ color: "oklch(0.25 0.04 30)" }}>
           {gift.name}
         </p>
-        <p className="mt-1 text-[11px] font-bold" style={{ color: "oklch(0.26 0.17 10)" }}>
+        <p className="mt-1 text-[11px] font-bold" style={{ color: "#FFBDBD" }}>
           ₺{gift.price.toLocaleString("tr-TR")}
         </p>
       </div>
@@ -349,7 +349,7 @@ export default function ResultsPage() {
         aria-hidden="true"
         style={{
           background:
-            "radial-gradient(ellipse 80% 50% at 50% 0%, oklch(0.75 0.06 10 / 0.15), transparent 60%)",
+            "radial-gradient(ellipse 80% 50% at 50% 0%, rgba(255,164,164,0.12), transparent 60%)",
         }}
       />
 
@@ -357,7 +357,7 @@ export default function ResultsPage() {
       <div
         className="sticky top-0 z-10 backdrop-blur-xl"
         style={{
-          background: "oklch(0.92 0.025 80 / 0.96)",
+          background: "rgba(252,249,234,0.96)",
           borderBottom: "1px solid oklch(0 0 0 / 12%)",
         }}
       >
@@ -365,7 +365,7 @@ export default function ResultsPage() {
           <div className="min-w-0">
             <h1
               className="text-xl font-bold"
-              style={{ color: "oklch(0.26 0.17 10)" }}
+              style={{ color: "#FFBDBD" }}
             >
               Senin için en iyi hediyeler ✦
             </h1>
@@ -376,9 +376,9 @@ export default function ResultsPage() {
                     key={pill}
                     className="inline-flex items-center rounded-full px-2.5 py-0.5 text-[11px] font-medium"
                     style={{
-                      background: "oklch(0.26 0.17 10 / 0.10)",
-                      border: "1px solid oklch(0.26 0.17 10 / 0.20)",
-                      color: "oklch(0.26 0.17 10)",
+                      background: "rgba(186,223,219,0.15)",
+                      border: "1px solid rgba(186,223,219,0.30)",
+                      color: "#2D2D2D",
                     }}
                   >
                     {pill}
@@ -397,9 +397,9 @@ export default function ResultsPage() {
                 onClick={() => setDrawerOpen(true)}
                 className="flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold transition-all duration-200 hover:scale-105 active:scale-95"
                 style={{
-                  background: "oklch(0.26 0.17 10 / 0.10)",
-                  border: "1px solid oklch(0.26 0.17 10 / 0.22)",
-                  color: "oklch(0.26 0.17 10)",
+                  background: "rgba(255,189,189,0.12)",
+                  border: "1px solid rgba(255,189,189,0.25)",
+                  color: "#FFBDBD",
                 }}
               >
                 🔖 {saved.length}
@@ -412,7 +412,7 @@ export default function ResultsPage() {
                 href="/saved"
                 className="hidden sm:flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-medium transition-all duration-200 hover:scale-105"
                 style={{
-                  background: "oklch(0.93 0.020 80)",
+                  background: "#F0EDD8",
                   border: "1px solid oklch(0 0 0 / 8%)",
                   color: "oklch(0.40 0.04 40)",
                 }}
@@ -425,7 +425,7 @@ export default function ResultsPage() {
               href="/wizard"
               className="rounded-full px-4 py-1.5 text-xs font-semibold transition-all duration-200 hover:scale-105 active:scale-95"
               style={{
-                background: "oklch(0.93 0.020 80)",
+                background: "#F0EDD8",
                 border: "1px solid oklch(0 0 0 / 8%)",
                 color: "oklch(0.40 0.04 40)",
               }}
@@ -451,8 +451,8 @@ export default function ResultsPage() {
               href="/wizard"
               className="mt-2 rounded-2xl px-6 py-3 text-sm font-semibold transition-all hover:scale-105"
               style={{
-                background: "linear-gradient(135deg, oklch(0.32 0.17 10), oklch(0.26 0.17 10))",
-                color: "oklch(0.97 0.01 80)",
+                background: "linear-gradient(135deg, #FFA4A4, #FF8E8E)",
+                color: "#2D2D2D",
               }}
             >
               Tekrar Dene
@@ -505,7 +505,7 @@ export default function ResultsPage() {
           aria-live="polite"
           className="fixed bottom-6 left-1/2 -translate-x-1/2 rounded-full px-5 py-2.5 animate-fade-up whitespace-nowrap z-50"
           style={{
-            background: "oklch(0.93 0.020 80)",
+            background: "#F0EDD8",
             border: "1px solid oklch(0 0 0 / 10%)",
             boxShadow: "0 8px 24px oklch(0 0 0 / 0.06)",
             color: "oklch(0.25 0.04 30)",

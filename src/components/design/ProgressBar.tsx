@@ -34,7 +34,7 @@ export function ProgressBar({ currentStep, totalSteps, className }: ProgressBarP
         className="progress-fill h-full rounded-full"
         style={{
           width: mounted ? `${pct}%` : "0%",
-          background: "linear-gradient(90deg, oklch(0.26 0.17 10), oklch(0.32 0.17 10))",
+          background: "linear-gradient(90deg, #BADFDB, #8ECFC6)",
           transition: "width 550ms cubic-bezier(0.16, 1, 0.3, 1)",
           position: "relative",
         }}
@@ -51,9 +51,9 @@ export function ProgressBar({ currentStep, totalSteps, className }: ProgressBarP
             width: 8,
             height: 8,
             borderRadius: "50%",
-            background: "oklch(0.32 0.17 10)",
+            background: "#BADFDB",
             boxShadow:
-              "0 0 6px 3px oklch(0.26 0.17 10 / 0.5), 0 0 14px 6px oklch(0.26 0.17 10 / 0.25)",
+              "0 0 6px 3px rgba(186,223,219,0.5), 0 0 14px 6px rgba(186,223,219,0.25)",
             opacity: pct > 2 ? 1 : 0,
             transition: "opacity 300ms ease",
           }}
@@ -77,7 +77,7 @@ export function ProgressBar({ currentStep, totalSteps, className }: ProgressBarP
               height: 3,
               borderRadius: "50%",
               background: isPassed
-                ? "oklch(0.26 0.17 10 / 0.5)"
+                ? "rgba(186,223,219,0.5)"
                 : "oklch(0 0 0 / 12%)",
               transition: "background 400ms ease",
             }}

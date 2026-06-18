@@ -15,8 +15,8 @@ interface GiftCardProps {
 
 const RANK_COLORS: Record<number, { bg: string; text: string; label: string }> = {
   1: {
-    bg: "linear-gradient(135deg, oklch(0.32 0.17 10), oklch(0.26 0.17 10))",
-    text: "oklch(0.97 0.01 80)",
+    bg: "linear-gradient(135deg, #BADFDB, #8ECFC6)",
+    text: "#2D2D2D",
     label: "🥇",
   },
   2: {
@@ -43,7 +43,7 @@ export function GiftCard({ item, rank, onSave, saved }: GiftCardProps) {
       href={`/results/${item.id}`}
       className="group block overflow-hidden rounded-2xl transition-all duration-200 hover:-translate-y-0.5 active:scale-[0.99]"
       style={{
-        background: "oklch(0.99 0.010 80 / 88%)",
+        background: "rgba(255,253,243,0.88)",
         boxShadow: "0 2px 12px oklch(0 0 0 / 0.08), 0 1px 0 oklch(0 0 0 / 0.04) inset",
       }}
     >
@@ -54,7 +54,7 @@ export function GiftCard({ item, rank, onSave, saved }: GiftCardProps) {
           style={{
             width: 110,
             minHeight: 110,
-            background: "oklch(0.92 0.020 80)",
+            background: "#F0EDD8",
             borderRight: "1px solid oklch(0 0 0 / 6%)",
           }}
         >
@@ -81,7 +81,7 @@ export function GiftCard({ item, rank, onSave, saved }: GiftCardProps) {
                 rankStyle
                   ? { background: rankStyle.bg, color: rankStyle.text }
                   : {
-                      background: "oklch(0.88 0.030 80)",
+                      background: "#F0EDD8",
                       border: "1px solid oklch(0 0 0 / 10%)",
                       color: "oklch(0.40 0.04 40)",
                       fontSize: "9px",
@@ -134,7 +134,7 @@ export function GiftCard({ item, rank, onSave, saved }: GiftCardProps) {
           <div className="mt-1 flex items-center justify-between">
             <span
               className="text-base font-bold"
-              style={{ color: "oklch(0.26 0.17 10)" }}  /* bordo price */
+              style={{ color: "#FFBDBD" }}  /* light pink price */
             >
               ₺{item.price.toLocaleString("tr-TR")}
             </span>
@@ -153,10 +153,10 @@ export function GiftCard({ item, rank, onSave, saved }: GiftCardProps) {
                   className="flex h-7 w-7 items-center justify-center rounded-full transition-all duration-200 active:scale-90 hover:scale-110"
                   style={{
                     background: saved
-                      ? "oklch(0.26 0.17 10 / 0.15)"
+                      ? "rgba(255,189,189,0.15)"
                       : "oklch(0 0 0 / 4%)",
                     border: saved
-                      ? "1px solid oklch(0.26 0.17 10 / 0.35)"
+                      ? "1px solid rgba(255,189,189,0.35)"
                       : "1px solid oklch(0 0 0 / 8%)",
                   }}
                 >

@@ -225,7 +225,7 @@ function fireRipple(
 
   // Wave 1 — main bordo wash: slow, wide, cinematic
   spawnWave({
-    color: "oklch(0.26 0.17 10 / 0.14)",
+    color: "rgba(255,189,189,0.14)",
     startR: 0,
     endR: maxR,
     startOpacity: 1,
@@ -237,7 +237,7 @@ function fireRipple(
 
   // Wave 2 — tighter bloom ring, slightly behind
   spawnWave({
-    color: "oklch(0.32 0.17 10 / 0.10)",
+    color: "rgba(255,189,189,0.10)",
     startR: 0,
     endR: maxR * 0.60,
     startOpacity: 1,
@@ -293,11 +293,11 @@ function RadioRow({ option, questionId, selected, onSelect, index }: RadioRowPro
         animationDelay: `${index * 55}ms`,
         ...(selected
           ? {
-              background: "oklch(0.26 0.17 10 / 0.10)",
-              border: "1.5px solid oklch(0.26 0.17 10 / 0.50)",
+              background: "rgba(255,189,189,0.12)",
+              border: "1.5px solid rgba(255,189,189,0.50)",
             }
           : {
-              background: "oklch(0.94 0.022 80)",
+              background: "#F0EDD8",
               border: "1px solid oklch(0 0 0 / 8%)",
             }),
       }}
@@ -311,7 +311,7 @@ function RadioRow({ option, questionId, selected, onSelect, index }: RadioRowPro
         )}
         style={{
           background: selected
-            ? "oklch(0.26 0.17 10 / 0.15)"
+            ? "rgba(255,189,189,0.18)"
             : "oklch(0 0 0 / 4%)",
         }}
         aria-hidden="true"
@@ -346,9 +346,9 @@ function RadioRow({ option, questionId, selected, onSelect, index }: RadioRowPro
           selected ? "opacity-100 scale-100" : "opacity-0 scale-75 group-hover:opacity-25 group-hover:scale-90",
         )}
         style={
-          selected
-            ? { background: "oklch(0.26 0.17 10)", color: "oklch(0.97 0.01 80)" }
-            : { border: "1.5px solid oklch(0.26 0.17 10 / 0.5)" }
+           selected
+            ? { background: "#BADFDB", color: "#2D2D2D" }
+            : { border: "1.5px solid rgba(186,223,219,0.5)" }
         }
         aria-hidden="true"
       >
@@ -398,11 +398,11 @@ function ZodiacGrid({ options, value, onChange }: {
               animationDelay: `${i * 40}ms`,
               ...(selected
                 ? {
-                    background: "oklch(0.26 0.17 10 / 0.10)",
-                    border: "1.5px solid oklch(0.26 0.17 10 / 0.50)",
+                    background: "rgba(255,189,189,0.12)",
+                    border: "1.5px solid rgba(255,189,189,0.50)",
                   }
                 : {
-                    background: "oklch(0.94 0.022 80)",
+                    background: "#F0EDD8",
                     border: "1px solid oklch(0 0 0 / 8%)",
                   }),
             }}

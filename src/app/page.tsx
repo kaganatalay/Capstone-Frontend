@@ -30,7 +30,7 @@ export default function HomePage() {
           className="absolute -bottom-32 -right-32 h-[460px] w-[460px] rounded-full"
           style={{
             background:
-              "radial-gradient(circle, oklch(0.80 0.07 145 / 0.18) 0%, transparent 65%)",
+              "radial-gradient(circle, rgba(186,223,219,0.18) 0%, transparent 65%)",
           }}
         />
       </div>
@@ -68,7 +68,7 @@ export default function HomePage() {
           <h1
             className="font-display text-[2.6rem] font-bold leading-[1.1] tracking-[-0.02em]"
             style={{
-              color: "oklch(0.24 0.17 10)",
+              color: "#FFBDBD",
               textWrap: "balance",
             }}
           >
@@ -97,10 +97,10 @@ export default function HomePage() {
             className="group relative block w-full overflow-hidden rounded-2xl px-6 py-4 text-center text-base font-semibold transition-all duration-300 active:scale-[0.97]"
             style={{
               background:
-                "linear-gradient(160deg, oklch(0.30 0.17 10), oklch(0.24 0.17 10))",
-              color: "oklch(0.97 0.01 80)",
+                "linear-gradient(160deg, #FFA4A4, #FF8E8E)",
+              color: "#2D2D2D",
               boxShadow:
-                "0 4px 32px oklch(0.24 0.17 10 / 0.45), inset 0 1px 0 oklch(1 0 0 / 0.12)",
+                "0 4px 32px rgba(255,164,164,0.45), inset 0 1px 0 rgba(255,255,255,0.12)",
             }}
           >
             {/* Shimmer sweep on hover */}
@@ -124,7 +124,7 @@ export default function HomePage() {
                 key={label}
                 className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-medium"
                 style={{
-                  background: "oklch(0.93 0.020 80)",
+                  background: "#F0EDD8",
                   border: "1px solid oklch(0 0 0 / 8%)",
                   color: "oklch(0.50 0.04 40)",
                 }}
@@ -154,7 +154,7 @@ export default function HomePage() {
             width: 5,
             height: 5,
             borderRadius: "50%",
-            background: "oklch(0.30 0.16 10 / 0.50)",
+            background: "rgba(255,189,189,0.50)",
             animationDelay: "0s",
             animationDuration: "4s",
           }}
@@ -167,7 +167,7 @@ export default function HomePage() {
             width: 3.5,
             height: 3.5,
             borderRadius: "50%",
-            background: "oklch(0.30 0.16 10 / 0.38)",
+            background: "rgba(186,223,219,0.38)",
             animationDelay: "0.8s",
             animationDuration: "5s",
           }}
@@ -180,7 +180,7 @@ export default function HomePage() {
             width: 4,
             height: 4,
             borderRadius: "50%",
-            background: "oklch(0.38 0.09 145 / 0.30)",
+            background: "rgba(186,223,219,0.40)",
             animationDelay: "1.4s",
             animationDuration: "4.5s",
           }}
@@ -193,7 +193,7 @@ export default function HomePage() {
             width: 3,
             height: 3,
             borderRadius: "50%",
-            background: "oklch(0.30 0.16 10 / 0.28)",
+            background: "rgba(255,189,189,0.28)",
             animationDelay: "2s",
             animationDuration: "6s",
           }}

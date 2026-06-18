@@ -187,7 +187,7 @@ export default function WizardPage() {
                 key={i}
                 className="h-1.5 w-1.5 rounded-full animate-pulse"
                 style={{
-                  background: "oklch(0.26 0.17 10)",
+                  background: "#BADFDB",
                   animationDelay: `${i * 220}ms`,
                 }}
               />
@@ -210,8 +210,8 @@ export default function WizardPage() {
           onClick={() => window.location.reload()}
           className="rounded-xl px-6 py-3 text-sm font-semibold transition-all hover:brightness-105 active:scale-95"
           style={{
-              background: "oklch(0.40 0.15 25)",
-              color: "oklch(0.98 0.005 95)",
+              background: "#FFA4A4",
+              color: "#2D2D2D",
           }}
         >
           Tekrar dene
@@ -231,8 +231,8 @@ export default function WizardPage() {
           className="pointer-events-none absolute inset-0 -z-10 transition-all duration-700"
           style={{
             background: blasting
-              ? "radial-gradient(ellipse 80% 70% at 50% 50%, oklch(0.40 0.15 25 / 0.18), transparent 60%)"
-              : "radial-gradient(ellipse 60% 50% at 50% 50%, oklch(0.40 0.15 25 / 0.08), transparent 65%)",
+              ? "radial-gradient(ellipse 80% 70% at 50% 50%, rgba(186,223,219,0.18), transparent 60%)"
+              : "radial-gradient(ellipse 60% 50% at 50% 50%, rgba(186,223,219,0.08), transparent 65%)",
           }}
         />
 
@@ -248,7 +248,7 @@ export default function WizardPage() {
             className="transition-all duration-300"
             style={{ opacity: blasting ? 0 : 1, transform: blasting ? "translateY(8px)" : "translateY(0)" }}
           >
-            <p className="text-xl font-semibold" style={{ color: "oklch(0.40 0.15 25)" }}>
+            <p className="text-xl font-semibold" style={{ color: "#BADFDB" }}>
               En iyi hediyeler aranıyor...
             </p>
             <p
@@ -264,12 +264,12 @@ export default function WizardPage() {
             <p
               className="absolute animate-fade-up text-2xl font-semibold"
               style={{
-                color: "oklch(0.40 0.15 25)",
+                color: "#FFA4A4",
                 animationDelay: "2300ms",
                 animationFillMode: "both",
                 top: "calc(100% + 1.5rem)",
                 whiteSpace: "nowrap",
-                textShadow: "0 0 40px oklch(0.40 0.15 25 / 0.45)",
+                textShadow: "0 0 40px rgba(255,164,164,0.45)",
               }}
             >
               Hediyeler hazır ✦
@@ -285,7 +285,7 @@ export default function WizardPage() {
                   key={i}
                   className="h-1.5 w-1.5 rounded-full"
                   style={{
-                    background: "oklch(0.40 0.15 25)",
+                    background: "#BADFDB",
                     animation: "pulse-dot 1.4s ease-in-out infinite",
                     animationDelay: `${i * 200}ms`,
                   }}
@@ -306,7 +306,7 @@ export default function WizardPage() {
       <div
         className="sticky top-0 z-10 backdrop-blur-xl"
         style={{
-          background: "oklch(0.92 0.025 80 / 0.96)",
+          background: "rgba(252,249,234,0.96)",
           borderBottom: "1px solid oklch(0 0 0 / 12%)",
         }}
       >
@@ -383,7 +383,7 @@ export default function WizardPage() {
       <div
         className="fixed bottom-0 left-0 right-0 z-10 backdrop-blur-xl"
         style={{
-          background: "oklch(0.96 0.025 80 / 0.95)",
+          background: "rgba(252,249,234,0.95)",
           borderTop: "1px solid oklch(0 0 0 / 8%)",
         }}
       >
@@ -406,12 +406,12 @@ export default function WizardPage() {
               style={
                 stepValid
                   ? {
-                      background: "oklch(0.26 0.17 10)",
-                      color: "oklch(0.97 0.01 80)",
-                      boxShadow: "0 2px 12px oklch(0.26 0.17 10 / 0.20)",
+                      background: "#FFA4A4",
+                      color: "#2D2D2D",
+                      boxShadow: "0 2px 12px rgba(255,164,164,0.20)",
                     }
                   : {
-                      background: "oklch(0.93 0.020 80)",
+                      background: "#F0EDD8",
                       color: "oklch(0.60 0.02 40)",
                       cursor: "not-allowed",
                     }
@@ -440,8 +440,8 @@ export default function WizardPage() {
                   onClick={goNext}
                   className="shrink-0 rounded-xl px-4 py-2 text-xs font-semibold transition-all duration-150 hover:brightness-110 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   style={{
-                    background: "oklch(0.26 0.17 10)",
-                    color: "oklch(0.97 0.01 80)",
+                    background: "#FFA4A4",
+                    color: "#2D2D2D",
                   }}
                 >
                   {isLastStep ? "Hediyeleri bul" : <span className="flex items-center justify-center gap-1.5">İleri <ArrowRight size={14} /></span>}

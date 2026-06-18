@@ -26,9 +26,9 @@ export function SavedBadge() {
       href="/saved"
       className="absolute top-6 right-5 flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold animate-fade-in transition-all duration-200 hover:scale-105 active:scale-95"
       style={{
-        background: "oklch(0.26 0.17 10 / 0.10)",
-        border: "1px solid oklch(0.26 0.17 10 / 0.22)",
-        color: "oklch(0.26 0.17 10)",
+        background: "rgba(255,189,189,0.12)",
+        border: "1px solid rgba(255,189,189,0.25)",
+        color: "#FFBDBD",
         animationDelay: "300ms",
       }}
       aria-label={`${count} kaydedilen hediye`}

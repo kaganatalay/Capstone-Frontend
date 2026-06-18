@@ -3,12 +3,12 @@
  *
  * Continuous smooth open-breathe-close loop. No pauses, no holds.
  * The lid follows a sine-like arc: rises, holds very briefly at peak,
- * then descends smoothly â€” all blending into the next cycle.
+ * then descends smoothly — all blending into the next cycle.
  *
  * Total cycle: 4.8s so it feels deliberate but not sluggish.
  */
 
-/* â”€â”€ Root container â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ── Root container ────────────────────────────────────────────── */
 .animated-gift-root {
   position: relative;
   display: inline-flex;
@@ -24,30 +24,21 @@
   filter: drop-shadow(0 8px 24px oklch(0 0 0 / 0.4));
 }
 
-/* â”€â”€ Ambient glow â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ── Ambient glow ──────────────────────────────────────────────── */
 .gift-glow {
   position: absolute;
   inset: -20%;
   border-radius: 50%;
   background: radial-gradient(
     circle,
-    oklch(0.26 0.17 10 / 0.18) 0%,
+    rgba(255,164,164,0.18) 0%,
     transparent 70%
   );
   animation: giftGlowPulse 4.8s ease-in-out infinite;
   pointer-events: none;
 }
 
-/* â”€â”€ Lid â€” continuous smooth arc, no holds â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
-/*
-  Easing strategy: use ease-in-out so each keyframe blends into
-  the next without a visible "snap". The animation-timing-function
-  is set per-segment via the keyframe's own easing.
-  0%   â†’ closed
-  35%  â†’ fully open (peak)
-  65%  â†’ back closed
-  100% â†’ closed (loops into next open)
-*/
+/* ── Lid — continuous smooth arc, no holds ─────────────────────── */
 .gift-lid {
   animation: lidContinuous 4.8s ease-in-out infinite;
   transform-origin: 60px 44px;
@@ -72,14 +63,14 @@
 .gift-particles .p6 { animation: particleContinuous6 4.8s ease-in-out infinite; animation-delay: 0.08s; }
 .gift-particles .p7 { animation: particleContinuous7 4.8s ease-in-out infinite; animation-delay: 0.08s; }
 
-/* â”€â”€ Keyframes â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ── Keyframes ─────────────────────────────────────────────────── */
 @keyframes giftGlowPulse {
   0%, 100% { opacity: 0.6; transform: scale(1); }
   35%       { opacity: 1;   transform: scale(1.10); }
   65%       { opacity: 0.7; transform: scale(1.02); }
 }
 
-/* Lid: smooth sine arc â€” rises and falls with no hard stop */
+/* Lid: smooth sine arc — rises and falls with no hard stop */
 @keyframes lidContinuous {
   0%   { transform: translateY(0px)   rotate(0deg); }
   35%  { transform: translateY(-26px) rotate(-5deg); }
@@ -94,7 +85,7 @@
   100% { transform: translateY(0px)   scale(1); }
 }
 
-/* Shimmer follows the same arc â€” peaks at open, gone by close */
+/* Shimmer follows the same arc — peaks at open, gone by close */
 @keyframes shimmerContinuous {
   0%   { opacity: 0; }
   25%  { opacity: 0; }
@@ -146,7 +137,7 @@
   100%     { opacity: 0; }
 }
 
-/* â”€â”€ Reduced motion â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ── Reduced motion ────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   .gift-lid,
   .gift-bow,
@@ -158,16 +149,16 @@
   .gift-glow { opacity: 0.7; }
 }
 
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-   LOADING VARIANT â€” patient, curious shake while AI thinks
+/* ═══════════════════════════════════════════════════════════════
+   LOADING VARIANT — patient, curious shake while AI thinks
    Gentle wobble on the root. Lid barely whispers open.
-   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+   ═══════════════════════════════════════════════════════════════ */
 
 .gift-variant-loading {
   animation: giftLoadingShake 0.85s ease-in-out infinite;
 }
 
-/* Lid barely breathes â€” just a hint something's inside */
+/* Lid barely breathes — just a hint something's inside */
 .gift-variant-loading .gift-lid {
   animation: giftLidWhisper 4.8s ease-in-out infinite !important;
   transform-origin: 60px 44px;
@@ -187,7 +178,7 @@
   90%       { transform: rotate(-0.7deg)  translate(-0.8px, 0); }
 }
 
-/* Lid: 4px lift max â€” just enough to read as "something's in there" */
+/* Lid: 4px lift max — just enough to read as "something's in there" */
 @keyframes giftLidWhisper {
   0%   { transform: translateY(0)    rotate(0deg); }
   35%  { transform: translateY(-4px) rotate(-0.7deg); }
@@ -203,27 +194,27 @@
   100% { transform: translateY(0)    scale(1); }
 }
 
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-   BLAST VARIANT â€” one-shot reveal when results land
+/* ═══════════════════════════════════════════════════════════════
+   BLAST VARIANT — one-shot reveal when results land
 
    Timeline (3.5 s):
-     0â€“52%   Build shake: barely perceptible â†’ Â±9Â° intense (1820 ms)
-     52â€“58%  Dead stop â€” tension before release (210 ms)
-     58â€“62%  Windup squish to 82% (140 ms)
-     62â€“74%  Slow deliberate zoom to 2.4Ã— â€” lid flies freely
-     74â€“82%  Brief hold at peak
-     82â€“100% Drift up and dissolve
+     0–52%   Build shake: barely perceptible → ±9° intense (1820 ms)
+     52–58%  Dead stop — tension before release (210 ms)
+     58–62%  Windup squish to 82% (140 ms)
+     62–74%  Slow deliberate zoom to 2.4× — lid flies freely
+     74–82%  Brief hold at peak
+     82–100% Drift up and dissolve
 
-   Flash / glow stay subtle â€” no warm colour wash.
+   Flash / glow stay subtle — no warm colour wash.
    SVG must have overflow:visible for lid to travel freely.
-   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+   ═══════════════════════════════════════════════════════════════ */
 
 .gift-variant-blast {
   animation: giftBlastRoot 3.5s linear forwards !important;
 }
 
 @keyframes giftBlastRoot {
-  /* â”€â”€ Slow build â€” barely there at first, louder each beat â”€â”€ */
+  /* ── Slow build — barely there at first, louder each beat ── */
   0%    { transform: translate(0,    0)     scale(1)    rotate(0deg);   opacity: 1; }
   6%    { transform: translate(-1.5px, 0)   scale(1)    rotate(-1.5deg); opacity: 1; }
   12%   { transform: translate(2px,   0)    scale(1)    rotate(2deg);    opacity: 1; }
@@ -234,19 +225,19 @@
   42%   { transform: translate(-7px,  -1px) scale(0.97) rotate(-7deg);   opacity: 1; }
   48%   { transform: translate(8.5px, -1px) scale(1.04) rotate(8.5deg);  opacity: 1; }
   52%   { transform: translate(-9px,  -2px) scale(0.96) rotate(-9deg);   opacity: 1; } /* PEAK */
-  /* â”€â”€ Dead stop â”€â”€ */
+  /* ── Dead stop ── */
   58%   { transform: translate(0, 0)        scale(1)    rotate(0deg);    opacity: 1; }
-  /* â”€â”€ Windup squish â”€â”€ */
+  /* ── Windup squish ── */
   62%   { transform: translate(0, 0)        scale(0.82) rotate(0deg);    opacity: 1; }
-  /* â”€â”€ Slow zoom in â€” camera pushing toward the gift â”€â”€ */
+  /* ── Slow zoom in — camera pushing toward the gift ── */
   74%   { transform: translate(0, 0)        scale(2.4)  rotate(0deg);    opacity: 1; }
-  /* â”€â”€ Hold at peak â”€â”€ */
+  /* ── Hold at peak ── */
   82%   { transform: translate(0, -10px)    scale(2.2)  rotate(0deg);    opacity: 0.95; }
-  /* â”€â”€ Dissolve â”€â”€ */
+  /* ── Dissolve ── */
   100%  { transform: translate(0, -55px)    scale(0.45) rotate(0deg);    opacity: 0; }
 }
 
-/* Glow: stays in its native purple hue throughout â€” no warm colour burst */
+/* Glow: stays subtle throughout */
 .gift-variant-blast .gift-glow {
   animation: giftBlastGlow 3.5s ease-out forwards !important;
 }
@@ -255,7 +246,7 @@
   52%   { transform: scale(1.3);  opacity: 0.8; }  /* swells with shake */
   58%   { transform: scale(1.1);  opacity: 0.4; }  /* dead stop */
   62%   { transform: scale(0.88); opacity: 0.22; } /* windup */
-  74%   { transform: scale(4.5);  opacity: 0.4; }  /* zoom â€” stays dim */
+  74%   { transform: scale(4.5);  opacity: 0.4; }  /* zoom — stays dim */
   100%  { transform: scale(9);    opacity: 0; }
 }
 
@@ -268,11 +259,11 @@
   0%    { transform: translate(0, 0)       rotate(0deg);    opacity: 1; }
   /* Pinned during entire shake */
   59%   { transform: translate(0, 0)       rotate(0deg);    opacity: 1; }
-  /* Windup â€” compresses down before launch */
+  /* Windup — compresses down before launch */
   64%   { transform: translate(0, 8px)     rotate(3deg);    opacity: 1; }
   /* First burst */
   72%   { transform: translate(-7px,-90px) rotate(-22deg);  opacity: 1; }
-  /* Arc with left drift â€” physics-realistic trajectory */
+  /* Arc with left drift — physics-realistic trajectory */
   82%   { transform: translate(-16px,-200px) rotate(-44deg); opacity: 0.65; }
   92%   { transform: translate(-22px,-310px) rotate(-58deg); opacity: 0.2; }
   100%  { transform: translate(-28px,-390px) rotate(-70deg); opacity: 0; }
@@ -306,7 +297,7 @@
   100%  { opacity: 0;    transform: scale(5.5) translateY(-18px); }
 }
 
-/* Particles: delayed to zoom moment (62% Ã— 3500ms â‰ˆ 2170ms) */
+/* Particles: delayed to zoom moment (62% × 3500ms ≈ 2170ms) */
 .gift-variant-blast .gift-particles .particle {
   animation: none !important;
   opacity: 0 !important;
@@ -340,7 +331,7 @@
   opacity: 1 !important;
 }
 
-/* â”€â”€ Particle keyframes â€” radial scatter â”€â”€ */
+/* ── Particle keyframes — radial scatter ── */
 @keyframes giftBlastP1 {
   0%   { opacity: 0; transform: translate(0, 0) scale(0.3); }
   12%  { opacity: 1; transform: translate(0, -18px) scale(1.5); }
@@ -377,7 +368,7 @@
   100% { opacity: 0; transform: translate(56px, -128px) scale(3.2); }
 }
 
-/* â”€â”€ Flash: very faint, near-neutral â€” no yellow wash â”€â”€ */
+/* ── Flash: very faint, near-neutral ── */
 .gift-flash {
   position: absolute;
   inset: -60%;
@@ -385,7 +376,7 @@
   pointer-events: none;
   background: radial-gradient(
     circle,
-    oklch(0.92 0.04 10 / 0.30) 0%,
+    rgba(255,164,164,0.30) 0%,
     transparent 55%
   );
   /* fires at zoom moment */
@@ -397,13 +388,13 @@
   100% { opacity: 0; transform: scale(2.5); }
 }
 
-/* â”€â”€ Shockwave rings â€” cascade from zoom moment â”€â”€ */
+/* ── Shockwave rings — cascade from zoom moment ── */
 .gift-shockwave {
   position: absolute;
   inset: -15%;
   border-radius: 50%;
   pointer-events: none;
-  border: 2.5px solid oklch(0.26 0.17 10);
+  border: 2.5px solid #FFBDBD;
 }
 .gift-shockwave-1 {
   animation: giftShockwave 1.1s ease-out 2.15s both;
@@ -411,19 +402,19 @@
 .gift-shockwave-2 {
   animation: giftShockwave 1.3s ease-out 2.35s both;
   border-width: 1.5px;
-  border-color: oklch(0.26 0.17 10 / 0.45);
+  border-color: rgba(255,164,164,0.45);
 }
 .gift-shockwave-3 {
   animation: giftShockwave 1.55s ease-out 2.58s both;
   border-width: 1px;
-  border-color: oklch(0.38 0.09 145 / 0.30);
+  border-color: rgba(186,223,219,0.30);
 }
 @keyframes giftShockwave {
   0%   { transform: scale(0.2); opacity: 1; }
   100% { transform: scale(7);   opacity: 0; }
 }
 
-/* â”€â”€ Reduced motion â”€â”€ */
+/* ── Reduced motion ── */
 @media (prefers-reduced-motion: reduce) {
   .gift-variant-loading,
   .gift-variant-loading .gift-lid,

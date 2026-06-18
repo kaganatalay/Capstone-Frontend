@@ -46,7 +46,7 @@ function SavedCard({
     <article
       className="saved-card group relative flex flex-col overflow-hidden rounded-2xl"
       style={{
-        background: "oklch(0.99 0.010 80 / 92%)",
+        background: "rgba(255,253,243,0.92)",
         border: "1px solid oklch(0 0 0 / 7%)",
         boxShadow: "0 4px 20px oklch(0 0 0 / 0.06), 0 1px 0 oklch(1 0 0 / 0.5) inset",
         ...style,
@@ -57,7 +57,7 @@ function SavedCard({
         className="relative w-full overflow-hidden"
         style={{
           height: 180,
-          background: "oklch(0.93 0.020 80)",
+          background: "#F0EDD8",
           borderBottom: "1px solid oklch(0 0 0 / 6%)",
         }}
       >
@@ -83,7 +83,7 @@ function SavedCard({
           onClick={() => onRemove(gift.id)}
           className="absolute right-2 top-2 flex h-8 w-8 items-center justify-center rounded-full opacity-0 group-hover:opacity-100 transition-all duration-200 hover:scale-110 active:scale-90 focus-visible:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           style={{
-            background: "oklch(0.96 0.018 80 / 82%)",
+            background: "rgba(252,249,234,0.82)",
             backdropFilter: "blur(8px)",
             border: "1px solid oklch(0 0 0 / 8%)",
             color: "oklch(0.45 0.18 22)",
@@ -98,7 +98,7 @@ function SavedCard({
         <div
           className="absolute left-2 bottom-2 rounded-full px-2 py-0.5 text-[10px] font-medium"
           style={{
-            background: "oklch(0.94 0.018 80 / 75%)",
+            background: "rgba(252,249,234,0.75)",
             backdropFilter: "blur(8px)",
             border: "1px solid oklch(0 0 0 / 7%)",
             color: "oklch(0.55 0.03 40)",
@@ -151,7 +151,7 @@ function SavedCard({
 
         {/* Price + CTA */}
         <div className="mt-auto flex items-center justify-between pt-1">
-          <span className="text-base font-bold" style={{ color: "oklch(0.26 0.17 10)" }}>
+          <span className="text-base font-bold" style={{ color: "#FFBDBD" }}>
             ₺{gift.price.toLocaleString("tr-TR")}
           </span>
           <a
@@ -180,7 +180,7 @@ function EmptyState() {
       <div
         className="flex h-24 w-24 items-center justify-center rounded-3xl text-5xl animate-float"
         style={{
-          background: "oklch(0.93 0.020 80)",
+          background: "#F0EDD8",
           border: "1px solid oklch(0 0 0 / 7%)",
         }}
       >
@@ -198,9 +198,9 @@ function EmptyState() {
         href="/wizard"
         className="mt-2 inline-flex items-center gap-2 rounded-xl px-6 py-3 text-sm font-semibold transition-all duration-200 hover:scale-105 active:scale-95"
         style={{
-          background: "oklch(0.26 0.17 10)",
-          color: "oklch(0.97 0.01 80)",
-          boxShadow: "0 4px 16px oklch(0.26 0.17 10 / 0.20)",
+          background: "#FFA4A4",
+          color: "#2D2D2D",
+          boxShadow: "0 4px 16px rgba(255,164,164,0.20)",
         }}
       >
         Hediye Ara
@@ -263,7 +263,7 @@ export default function SavedPage() {
         aria-hidden="true"
         style={{
           background:
-            "radial-gradient(ellipse 70% 40% at 50% 0%, oklch(0.75 0.06 10 / 0.10), transparent 55%)",
+            "radial-gradient(ellipse 70% 40% at 50% 0%, rgba(186,223,219,0.08), transparent 55%)",
         }}
       />
 
@@ -271,7 +271,7 @@ export default function SavedPage() {
       <div
         className="sticky top-0 z-20 backdrop-blur-xl"
         style={{
-          background: "oklch(0.92 0.025 80 / 0.96)",
+          background: "rgba(252,249,234,0.96)",
           borderBottom: "1px solid oklch(0 0 0 / 12%)",
         }}
       >
@@ -288,7 +288,7 @@ export default function SavedPage() {
               </svg>
             </Link>
             <div>
-              <h1 className="text-lg font-bold" style={{ color: "oklch(0.26 0.17 10)" }}>
+              <h1 className="text-lg font-bold" style={{ color: "#FFBDBD" }}>
                 Kaydedilen Hediyeler
               </h1>
               {saved.length > 0 && (
@@ -314,7 +314,7 @@ export default function SavedPage() {
                         color: "oklch(0.72 0.18 22)",
                       }
                     : {
-                        background: "oklch(0.93 0.020 80)",
+                        background: "#F0EDD8",
                         border: "1px solid oklch(0 0 0 / 8%)",
                         color: "oklch(0.50 0.03 40)",
                       }
@@ -327,8 +327,8 @@ export default function SavedPage() {
               href="/wizard"
               className="rounded-full px-4 py-1.5 text-xs font-semibold transition-all duration-200 hover:scale-105 active:scale-95"
               style={{
-                background: "oklch(0.26 0.17 10)",
-                color: "oklch(0.97 0.01 80)",
+                background: "#FFA4A4",
+                color: "#2D2D2D",
               }}
             >
               Yeni Arama
